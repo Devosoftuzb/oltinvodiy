@@ -53,7 +53,7 @@
             </h1>
         </div>
         <nav class="header-menu-mobile">
-            <router-link  to="/Home" class="header-menu-item">
+            <router-link  to="/" class="header-menu-item">
                 <h3>
                     Bosh sahifa
                 </h3>

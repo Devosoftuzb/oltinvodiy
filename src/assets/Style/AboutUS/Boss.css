@@ -1,0 +1,62 @@
+.About-boss{
+padding-bottom: 100px;
+}
+.About-boss h1{
+    color: #dca26b;
+    font-size: 45px;
+    font-weight: normal;
+    text-transform: capitalize;
+    line-height: 56px;
+    margin-bottom: 30px;
+}
+.About-boss-content p{
+    margin-bottom: 20px;
+    font-family: "Roboto", sans-serif;
+    color: #E5CFBD;
+    font-size: 18px;
+    font-weight: normal;
+    width: 680px;
+    margin-bottom: 30px;
+    letter-spacing:1px; 
+    word-spacing: 4px;
+}
+.About-boss-foto img{
+    width: 456px;
+    height: 681px;
+    border: 3px solid #dca26b;
+}
+.About-boss-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+@media(max-width:1160px){
+    .About-boss-content p{
+        width: 100%;
+    }
+}
+@media(max-width:1100px){
+    .About-boss-wrapper{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+    }
+    .About-boss h1{
+        text-align: center;
+    }
+    .About-boss-content{
+        text-align: center;
+    }
+}
+@media(max-width:510px){
+    .About-boss h1{
+     font-size: 30px;
+    }
+     .About-boss-content p{
+         font-size: 15px;
+     }
+     .About-boss-foto img{
+        width: 100%;
+        height: 100%;
+     }
+ }

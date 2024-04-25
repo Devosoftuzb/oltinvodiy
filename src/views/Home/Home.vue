@@ -1,9 +1,9 @@
 <script setup>
-import '@/assets/Style/Hero.css';
-import '@/assets/Style/AboutUs.css';
-import '@/assets/Style/Gallary.css';
-import '@/assets/Style/Menu.css';
-import '@/assets/Style/Contact.css';
+import '@/assets/Style/Home/Hero.css'
+import '@/assets/Style/Home/AboutUs.css';
+import '@/assets/Style/Home/Gallary.css';
+import '@/assets/Style/Home/Menu.css';
+import '@/assets/Style/Home/Contact.css';
 </script>
 
 <template>
