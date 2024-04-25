@@ -1,5 +1,5 @@
 <template>
-<header>
+<header id="header" :class="{ 'header_bg': isScrolled }">
     <div class="header-wrapper">
         <div class="header-logo">
             <h1>
@@ -7,7 +7,7 @@
             </h1>
         </div>
         <nav class="header-menu">
-            <router-link  to="/Home" class="header-menu-item">
+            <router-link  to="/" class="header-menu-item">
                 <h3>
                     Bosh sahifa
                 </h3>
@@ -88,7 +88,7 @@
 </template>
 <script setup>
 import '@/assets/Style/Header.css'
-
+import { ref, onMounted, onUnmounted } from 'vue';
 function burger() {
         const burger = document.querySelector('.burger');
         const modal = document.querySelector('.header-modal-mobile')
@@ -97,4 +97,19 @@ function burger() {
         modal.classList.toggle('db');
         shadow.classList.toggle('db_shadow')
     }
+    
+
+const isScrolled = ref(false);
+
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 100;
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
 </script>

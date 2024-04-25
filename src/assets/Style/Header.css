@@ -155,6 +155,9 @@ header{
     transform: translateX(0);
     transition: all .6s cubic-bezier(.22,.61,.24,1) 0s;
 }
+.header_bg{
+    background-color: hsla(0, 80%, 4%, 0.795);
+}
 @media(max-width:1090px){
     .header-menu{
         display: none;
