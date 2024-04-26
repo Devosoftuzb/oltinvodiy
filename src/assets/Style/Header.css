@@ -1,6 +1,6 @@
 header{
     background-color: #130202;
-    padding: 30px 80px;
+    padding: 20px 80px;
     width: 100%;
     position:fixed;
     z-index: 33;
@@ -158,6 +158,14 @@ header{
 .header_bg{
     background-color: hsla(0, 80%, 4%, 0.795);
 }
+.logo{
+    width: 150px;
+    height: 100px;
+}
+.mobile-logo{
+    display: none;
+   
+}
 @media(max-width:1090px){
     .header-menu{
         display: none;
@@ -167,6 +175,14 @@ header{
     }
     .burger{
         display: block;
+    }
+    .mobile-logo{
+        display: block;
+        width: 200px;
+        height: 200px;
+    }
+    .logo{
+        display: none;
     }
 }
 @media(max-width:400px){

@@ -70,7 +70,7 @@ import '@/assets/Style/Home/Contact.css';
                 Ko'proq
               </router-link>
             </div>
-            <div class="Gallary-foto">
+            <div class="Home-Gallary-foto">
               <img src="https://frndsdubai.com/wp-content/uploads/2022/12/FRNDS-CAFE_Tape-Agency_026_07.11.2022-1-2048x1365.jpg" alt="foto">
             </div>
           </div>

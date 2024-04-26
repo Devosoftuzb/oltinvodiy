@@ -1,0 +1,32 @@
+.Gallary-hero{
+    position: relative;
+    background-image: url("https://frndsdubai.com/wp-content/uploads/2022/12/FRNDS-CAFE_Tape-Agency_008_07.11.2022-2-scaled.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+.Gallary-hero-shadow{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: 0.7;
+}
+.Gallary-hero h1{
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    color: #D9A359;
+    font-size: 110px;
+    font-weight: normal;
+    line-height: 1.1em;
+}
+@media(max-width:500px){
+    .Gallary-hero h1{
+        font-size: 50px;
+    }
+}

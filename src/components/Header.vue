@@ -2,9 +2,11 @@
 <header id="header" :class="{ 'header_bg': isScrolled }">
     <div class="header-wrapper">
         <div class="header-logo">
-            <h1>
+            <!-- <h1>
                 Oltin <span>vodiy</span> 
-            </h1>
+            </h1> -->
+            <img class="logo"  src="/public/header-logo.png" alt="">
+            <img class="mobile-logo"  src="/public/mobile-logo.png" alt="">
         </div>
         <nav class="header-menu">
             <router-link  to="/" class="header-menu-item">
