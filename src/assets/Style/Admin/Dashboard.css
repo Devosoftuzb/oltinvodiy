@@ -1,0 +1,110 @@
+.Dashboard{
+    background-color: #1A0A0A;
+    display: flex;
+    /* overflow: hidden; */
+    width: 100%;
+    height: 100vh;
+}
+.Dashboard-content{
+    width: 100%;
+}
+.Dashboard-header{
+    width: 100%;
+    padding: 30px 20px;
+    /* padding-top: 5px; */
+    background-color: #D9A359;
+}
+.Dashboard-header h1{
+    color: #1A0A0A;
+    font-family: "Roboto", sans-serif;
+    font-size: 30px;
+}
+.Dashboard-main{
+    padding: 30px 15px;
+}
+.dashboard-card{
+    background-color: #D9A359;
+    padding: 15px 20px;
+    margin-bottom: 2px;
+    border-radius: 30px;
+}
+.dashboard-card-grid{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 50px; */
+    margin-bottom: 20px;
+}
+.dashboard-card h3{
+    color: #1A0A0A;
+    font-size: 30px;   
+    font-family: "Roboto", sans-serif;
+
+}
+.dashboard-card span{
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+}
+.dashboard-card-btn{
+    background-color: #1A0A0A;
+    color: #D9A359;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 110px;
+border: #1A0A0A 2px solid;
+}
+.dashboard-card-btn svg{
+    font-size: 20px;
+}
+.dashboard-card-btn:hover{
+    background-color: #D9A359;
+    color: #1A0A0A;
+}
+.Dashboard-wrapper{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 30px;
+}
+.header-burger button {
+    background-color: #1A0A0A;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+}
+
+.header-burger button svg {
+    color: #D9A359;
+    font-size: 30px;
+}
+.header-burger{
+    padding-bottom: 0;
+    width: 100%;
+    background-color: #D9A359;
+}
+.header-burger{
+    display: none;
+}
+@media(max-width:1230px){
+    .Dashboard-wrapper{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+@media(max-width:930px){
+    .Dashboard-wrapper{
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+@media(max-width:1400px){
+    .header-burger{
+        display: block;
+    }
+    .Dashboard-header{
+        padding-top: 5px;
+    }
+}

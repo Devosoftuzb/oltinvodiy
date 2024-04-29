@@ -1,0 +1,88 @@
+.Saidbar{
+    width: 350px;
+    height: 100vh;
+    background-color:#D9A359 ;
+    border-right: 3px solid #1A0A0A;
+    z-index: 100;
+}
+.Saidbar-header{
+    padding: 30px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Saidbar-menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Saidbar-menu-item{
+    font-family: "Roboto", sans-serif;
+    display: block;
+    color: Black;
+    font-size: 25px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+.Saidbar-menu-item:hover{
+    background-color: #1A0A0A;
+    color: #D9A359;
+}
+.router-link-exact-active {
+    background-color: #1A0A0A;
+    color: #D9A359;
+}
+.saidbar-header-X{
+    color: white;
+    font-size: 25px;
+    padding: 8px;
+}
+.db{
+    display: block;
+}
+.dn{
+    display: none;
+}
+.saidbar{
+    position: fixed;
+}
+.Saidbar-of{
+    position: fixed;
+    transform: translateX(0);
+    transition: 0.5s;
+    visibility: visible;
+    width: 300px;
+    height: 100vh;
+    background-color:#D9A359 ;
+    border-right: 3px solid #1A0A0A;
+    z-index: 100;
+}
+.saidbar-header-X{
+    display: none;
+}
+.saidbar-header-X button{
+    background-color: #1A0A0A;
+    color: #D9A359;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media(max-width:1400px){
+    .Saidbar{
+        position: fixed;
+        width: 300px;
+        z-index: 100;
+        transform: translateX(-100%);
+        transition: 0.5s;
+        visibility: visible; 
+        z-index: 100;
+    }
+    .saidbar-header-X{
+        display: block;
+    }
+}

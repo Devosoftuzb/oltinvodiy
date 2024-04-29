@@ -36,6 +36,36 @@ const router = createRouter({
           }
       ]
     },
+    {
+      path:"/Admin",
+      name:"admin",
+      component:() => import('../admin/Dashboard/Dashboard.vue'),
+    },
+    {
+      path:"/GallaryAdmin",
+      name:"gallaryadmin",
+      component:() => import('../admin/Gallary/Gallary.vue'),
+    },
+    {
+      path:"/MenuAdmin",
+      name:"menuadmin",
+      component:() => import('../admin/Menu/Menu.vue'),
+    },
+    {
+      path:"/HabarlarAdmin",
+      name:"habarlaradmin",
+      component:() => import('../admin/Habarlar/Habarlar.vue'),
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "error",
+      component: () => import("../views/Error/Error.vue"),
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: () => import("../admin/Login/login.vue"),
+    },
   ]
 })
 

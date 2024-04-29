@@ -1,0 +1,198 @@
+.HabarlarAdmin{
+    background-color: #1A0A0A;
+    display: flex;
+    /* overflow: hidden; */
+    width: 100%;
+    height: 100vh;
+}
+.HabarlarAdmin-content{
+    width: 100%;
+}
+.HabarlarAdmin-header{
+    width: 100%;
+    padding: 30px 20px;
+    background-color: #D9A359;
+}
+.HabarlarAdmin-header-btn{
+    background-color: #1A0A0A;
+    padding: 10px 20px;
+    border: #1A0A0A 2px solid ;
+    color: white;
+    font-size: 15px;
+    border-radius: 30px;
+    color: #D9A359;
+    font-weight: bold;
+}
+.HabarlarAdmin-header-btn:hover{
+    background-color: #D9A359;
+    color: #1A0A0A;
+    cursor: pointer;
+}
+.HabarlarAdmin-header h1{
+    color: #1A0A0A;
+    font-family: "Roboto", sans-serif;
+    font-size: 30px;
+}
+.HabarlarAdmin-main{
+    padding: 30px 15px;
+}
+.delete{
+    background-color: transparent;
+    border: none;
+}
+.edit{
+    background-color: transparent;
+    border: none;
+}
+.HabarlarAdmin-table{
+    width: 100%;
+}
+.HabarlarAdmin table{
+    width: 100%;
+}
+.HabarlarAdmin thead{
+    width: 100%;
+}
+.HabarlarAdmin table thead tr{
+    width: 100%;
+}
+.HabarlarAdmin table tbody{
+    width: 100%;
+}
+.HabarlarAdmin table tbody tr{
+    width: 100%;
+}
+.HabarlarAdmin table tbody tr img{
+    width: 200px;
+    height: 150px;
+    border-radius: 20px;
+    border: 3px solid #1A0A0A;
+}
+.HabarlarAdmin table thead tr td {
+    /* display: none; */
+    text-align: center;
+    padding: 20px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.HabarlarAdmin table thead tr td h3{
+    /* display: none; */
+    color: #1A0A0A;
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+    padding-top: 20px;
+}
+.HabarlarAdmin tbody h3{
+    color: #1A0A0A;
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+}
+.HabarlarAdmin tbody p{
+    text-align: center;
+    width: 500px;
+    color: #1A0A0A;
+    font-size: 15px;
+    font-family: "Roboto", sans-serif;
+    margin: 0 auto;
+}
+.HabarlarAdmin table tbody td {
+    text-align: center;
+    padding-top: 20px;
+}
+.delete{
+    font-size: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.edit {
+    font-size: 30px;
+    cursor: pointer;
+}
+.delate:hover {
+    color: red;
+}
+
+.edit:hover {
+    color: rgb(95, 95, 95);
+}
+.HabarlarAdmin table  {
+    background-color: #D9A359;
+    border-radius: 30px;
+    padding-bottom: 30px;
+}
+.HabarlarAdmin-footer{
+    width: 100%;
+    padding: 30px 15px;
+    background-color: #D9A359;
+}
+.HabarlarAdmin-footer-wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.HabarlarAdmin-footer button{
+    background-color: #1A0A0A;
+    color: #D9A359;
+    font-size: 25px;
+    border: 2px solid #1A0A0A;
+    border-radius: 24px;
+    padding: 10px 20px ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.HabarlarAdmin-footer button:hover{
+    background-color: #D9A359;
+    color: #1A0A0A;
+}
+.HabarlarAdmin-footer span{
+    color: #1A0A0A;
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+}
+.header-burger button {
+    background-color: #1A0A0A;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+}
+
+.header-burger button svg {
+    color: #D9A359;
+    font-size: 30px;
+}
+.header-burger{
+    padding-bottom: 0;
+    width: 100%;
+    background-color: #D9A359;
+}
+.header-burger{
+    display: none;
+}
+@media(max-width:1400px){
+    .HabarlarAdmin-table {
+        overflow: auto;
+        overflow-x: scroll;
+        width: 100%;
+        
+    }
+
+    .HabarlarAdmin-table table {
+        width: 1400px;
+        overflow: auto;
+        overflow-x: scroll;
+        /* display: none; */
+        padding: 20px;
+    }
+    .header-burger{
+        display: block;
+    }
+    .HabarlarAdmin-header{
+        padding-top: 5px;
+    }
+}
