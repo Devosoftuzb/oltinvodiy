@@ -7,14 +7,16 @@ import '@/assets/Style/Home/Contact.css';
 </script>
 
 <template>
+<div  class="AnimGsap">
+  <div class="GsapContent">
     <section class="Hero">
       <div class="container hero-wrapper" >
         <div class="hero-shadow">
-
+  
         </div>
         <div class="hero-content">
           <span>
-            Welcome to
+            {{ $t('greeting') }}
           </span>
           <h1>
             Oltin Vodiy
@@ -118,4 +120,6 @@ import '@/assets/Style/Home/Contact.css';
         </div>
       </div>
     </section>
+  </div>
+</div>
 </template>

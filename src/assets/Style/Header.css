@@ -1,6 +1,6 @@
 header{
     background-color: #130202;
-    padding: 20px 80px;
+    padding: 35px 80px;
     width: 100%;
     position:fixed;
     z-index: 33;
@@ -47,7 +47,7 @@ header{
 }
 .header-btn svg{
     color: #130202;
-    font-size: 35px;
+    font-size: 25px;
 }
 
 .burger {
@@ -166,12 +166,37 @@ header{
     display: none;
    
 }
+.Header-btn{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.Header-btn button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 30px;
+    background-color: #D0B08B;
+    border-radius: 50px;
+    border: 2px solid #D0B08B;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: "Source Sans 3", sans-serif;
+    transition: 0.5s;
+}
+.Header-btn button:hover{
+    background-color: #130202;
+    color: #D0B08B;
+}
+.ModalClose{
+    
+}
 @media(max-width:1090px){
     .header-menu{
         display: none;
     }
     header{
-        padding: 30px 15px ;
+        padding: 42px 15px ;
     }
     .burger{
         display: block;
@@ -185,6 +210,16 @@ header{
         display: none;
     }
 }
+@media(max-width:550px){
+    .Header-btn button{
+        padding: 5px 10px;
+        border-radius: 10px;
+    }
+    .header-btn a{
+        padding: 7px 10px;
+        border-radius: 10px;
+    }
+}
 @media(max-width:400px){
     .header-logo h1{
         font-size: 22px;
@@ -196,9 +231,12 @@ header{
     .header-btn svg{
         font-size: 20px;
     }
+    .Header-btn button{
+        font-size: 15px;
+    }
 }
-@media(max-width:280px){
-    .header-btn a{
-        padding: 10px;
+@media(max-width:315px){
+    .Header-btn{
+        gap: 5px;
     }
 }

@@ -2,8 +2,11 @@
 import Saidbar from "../../components/Saidbar.vue"
 import '@/assets/Style/Admin/Menu.css'
 import { useSidebarStore } from '@/stores/saidbar.js';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
+
+const Category = ref(false)
+const oppenCategory = () => (Category.value =!Category.value)
 const modal = ref(false)
 const oppenModal = () => (modal.value = !modal.value)
 const openChange = ref(false)
@@ -18,7 +21,11 @@ const activeIndex = ref(null);
 
 const changeBackground = (index) => {
   activeIndex.value = index;
+
 };
+onMounted(()=>{
+    window.scroll(0,0);
+})
 </script>
 <template>
     <div class="MenuAdmin">
@@ -40,7 +47,9 @@ const changeBackground = (index) => {
                     <button @click="oppenModal" class="MenuAdmin-header-btn">
                         Qo'shish
                     </button>
-                    
+                    <button @click="oppenCategory" class="MenuAdmin-header-btn">
+                        Turkum Qo`shish
+                    </button>
                 </div>
             </div>
             <div class="MenuAdmin-main">
@@ -309,7 +318,7 @@ const changeBackground = (index) => {
             <div class="change-modal">
                 <div class="change-header">
                     <h1>
-                        Menu qo`shish
+                        Menu O`zgartirish
                     </h1>
                     <button @click="openModalChange">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14">
@@ -372,13 +381,49 @@ const changeBackground = (index) => {
                         </div>
                         <div class="modal-footer">
                             <button class="submitBtn" type="submit">
-                                Menu qoshish
+                                Menu O`zgartirish
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
+        <div class="Category-modal-bg" :class="{'oppen-Category-Modal': Category}">
+            <div class="Category-modal">
+                <div class="Category-header">
+                    <div class="Category-modal-header">
+                        <h1>
+                            Turkum qo`shish
+                        </h1>
+                        <button @click="oppenCategory">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14">
+                                <path fill="currentColor" fill-rule="evenodd"
+                                    d="M1.707.293A1 1 0 0 0 .293 1.707L5.586 7L.293 12.293a1 1 0 1 0 1.414 1.414L7 8.414l5.293 5.293a1 1 0 0 0 1.414-1.414L8.414 7l5.293-5.293A1 1 0 0 0 12.293.293L7 5.586z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="form-grid ">
+                            <label for="turrus">
+                                <h3>
+                                    Nom Russ
+                                </h3>
+                                <input  required id="turrus" type="text">
+                            </label>
+                            <label for="turuz">
+                                <h3>
+                                    Nom Uzb
+                                </h3>
+                                <input  required id="turuz" type="text">
+                            </label>
+                        </div>
+                        <button class="submitBtn" type="submit">
+                            Menu qoshish
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
