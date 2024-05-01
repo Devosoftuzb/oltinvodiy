@@ -48,6 +48,7 @@
 .saidbar{
     position: fixed;
 }
+
 .Saidbar-of{
     position: fixed;
     transform: translateX(0);
@@ -72,6 +73,15 @@
     align-items: center;
     justify-content: center;
 }
+.Saidbar-menu h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.Saidbar-menu h3 svg{
+    font-size: 35px;
+}
+
 @media(max-width:1400px){
     .Saidbar{
         position: fixed;

@@ -2,12 +2,60 @@
 import Saidbar from "../../components/Saidbar.vue"
 import '@/assets/Style/Admin/Dashboard.css'
 import { useSidebarStore } from '@/stores/saidbar.js';
+import { reactive, onMounted } from 'vue'
+import axios from "../../services/axios";
+
 
 const sidebar = useSidebarStore();
 function burger() {
     sidebar.sidebar = !sidebar.sidebar
     modal.classList.toggle('db');
 }
+
+
+const NumberOfElements = reactive({
+    menu:0,
+    category:0,
+    contact:0,
+    gallery:0,
+})
+
+const getAll = () =>{
+    axios
+        .get("/menu/find-all",{
+
+        })
+        .then((res)=>{
+            NumberOfElements.menu = res.data.length
+            // console.log(res.data);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    axios
+        .get("/gallery/find-all",{
+
+        })
+        .then((res)=>{
+            NumberOfElements.gallery = res.data.length
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    axios
+        .get('/contact/find-all',{
+
+        })
+        .then((res)=>{
+            NumberOfElements.contact = res.data.length
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+}
+onMounted(() => {
+    getAll();
+});
 </script>
 <template>
     <div class="Dashboard">
@@ -34,7 +82,7 @@ function burger() {
                                 Gallary rasmlar 
                             </h3>
                             <span>
-                                10
+                                {{NumberOfElements.gallary}}
                             </span>
                         </div>
                         <router-link class="dashboard-card-btn" to="/AdminGallary">
@@ -47,7 +95,7 @@ function burger() {
                                 Menu
                             </h3>
                             <span>
-                                10
+                                {{NumberOfElements.menu}}
                             </span>
                         </div>
                         <router-link class="dashboard-card-btn" to="/AdminGallary">
@@ -60,7 +108,7 @@ function burger() {
                                 Habarlar 
                             </h3>
                             <span>
-                                10
+                                {{ NumberOfElements.contact }}
                             </span>
                         </div>
                         <router-link class="dashboard-card-btn" to="/AdminGallary">

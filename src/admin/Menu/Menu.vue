@@ -2,8 +2,12 @@
 import Saidbar from "../../components/Saidbar.vue"
 import '@/assets/Style/Admin/Menu.css'
 import { useSidebarStore } from '@/stores/saidbar.js';
-import { ref, onMounted } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
+import axios from '@/services/axios'
+import CONFIG from '../../stores/config'
 
+
+   
 
 const Category = ref(false)
 const oppenCategory = () => (Category.value =!Category.value)
@@ -23,8 +27,228 @@ const changeBackground = (index) => {
   activeIndex.value = index;
 
 };
+
+
+const getImg = ref(null);
+const setImg = (e) => {
+    getImg.value = e.target.files[0];
+    console.log(getImg.value);
+};
+
+const store = reactive({
+    menuAll: false,
+    pagMenuAll: [],
+    pag: 0,
+});
+const category = reactive({
+    name_uzb:"",
+    name_rus:"",
+})
+const menu = reactive({
+    title_uzb: "",
+    title_rus: "",
+    body_uzb: "",
+    body_rus: "",
+})
+
+const editMenu = reactive({
+    id:0,
+    title_uzb: "",
+    title_rus: "",
+    body_uzb: "",
+    body_rus: "",
+});
+
+const deleteCategory = (id) => {
+    axios
+        .delete(`/category/delete/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        })
+        .then((res) => {
+            getAllCategory()
+            location.reload()
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+const deleteMenu = (id) => {
+    axios
+        .delete(`/menu/delete/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        })
+        .then((res) => {
+            getAllMenu()
+            location.reload()
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
+const getOneMenu = (id) => {
+    axios
+        .get(`/menu/find/${id}`, {
+        })
+        .then((res) => {
+            getImg.value = res.data.image
+            editMenu.title_uzb = res.data.full_name;
+            editMenu.title_rus = res.data.profession
+            editMenu.body_uzb = res.data.info
+            editMenu.body_rus = res.data.number
+            openChange.value = true;
+        })
+        .catch((error) => {
+            console.log("error", error);
+        });
+};
+
+const editmenu = () => {
+    const data = {
+        image: getImg.value,
+        title_uzb: edit.title_uzb,
+        title_rus: edit.title_rus,
+        body_uzb: edit.body_uzb,
+        body_rus: edit.body_rus,
+    };
+
+    const formData = new FormData();
+    for (let i of Object.keys(data)) {
+        formData.append(i, data[i]);
+    }
+
+    axios
+        .put(`/menu/update/${edit.id}`, formData, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        })
+        .then((res) => {
+            edit.id = 0
+            edit.title_uzb = ""
+            edit.title_rus = ""
+            edit.body_uzb = ""
+            edit.body_rus = ""
+            getAllMenu()
+            location.reload()
+        })
+        .catch((error) => {
+            console.log("error", error);
+        });
+};
+const createCategory = () => {
+    const data = {
+        image: getImg.value,
+        name_uzb: category.name_uzb,
+        name_rus: category.name_rus,
+    };
+
+    const formData = new FormData();
+    for (let i of Object.keys(data)) {
+        formData.append(i, data[i]);
+    }
+
+
+    axios
+        .post("/menu/create", {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        })
+        .then((res) => {
+            category.name_uzb = "";
+            category.name_rus = "";
+            getAllCategory()
+            location.reload()
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+const createMenu = () => {
+    const data = {
+        image: getImg.value,
+        title_uzb: menu.title_uzb,
+        title_rus: menu.title_rus,
+        body_uzb: menu.body_uzb,
+        body_rus:menu.body_rus,
+    };
+
+    const formData = new FormData();
+    for (let i of Object.keys(data)) {
+        formData.append(i, data[i]);
+    }
+
+
+    axios
+        .post("/menu/create", formData, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        })
+        .then((res) => {
+            menu.title_uzb = "";
+            menu.title_rus = "";
+            menu.body_uzb = "";
+            menu.body_rus = "";
+            modal.value = false
+            getAllMenu()
+            location.reload()
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
+const getAllCategory = () => {
+    axios
+        .get("/menu/find-all", {
+        })
+        .then((res) => {
+            
+        })
+        .catch((error) => {
+            // store.error = true;
+            console.log(error);
+        });
+};
+const getAllMenu = () => {
+    axios
+        .get("/menu/find-all", {
+        })
+        .then((res) => {
+            store.menuAll = res.data
+            store.menuAll = store.menuAll.reverse()
+            store.menuAll.sort(function (x, y) {
+                return (x.status === y.status) ? 0 : x.status ? -1 : 1;
+            });
+            let Menu = []
+            for (let i in store.menuAll) {
+                    Menu.push(store.menuAll[i])
+                if (Menu.length == 3) {
+                    store.pagMenuAll.push(Menu)
+                    Menu = []
+                }
+                if ((Number(i) + 1) == store.menuAll.length && (store.pagMenuAll.length == 0 || Menu.length > 0)) {
+                    store.pagMenuAll.push(Menu)
+                    Menu = []
+                }
+            }
+        })
+        .catch((error) => {
+            // store.error = true;
+            console.log(error);
+        });
+};
+
 onMounted(()=>{
     window.scroll(0,0);
+    getAllMenu();
+    getAllCategory();
 })
 </script>
 <template>
@@ -293,14 +517,14 @@ onMounted(()=>{
                                 <h3>
                                     Malumot Russ
                                 </h3>
-                                <textarea  class="teacher-info" name="" id="textrus" cols=""
+                                <textarea  class="menu-info" name="" id="textrus" cols=""
                                     rows=""></textarea>
                             </label>
                             <label for="textuzb">
                                 <h3>
                                     Malumot Uzb
                                 </h3>
-                                <textarea  class="teacher-info" name="" id="textuzb" cols=""
+                                <textarea  class="menu-info" name="" id="textuzb" cols=""
                                     rows=""></textarea>
                             </label>
                         </div>
@@ -368,14 +592,14 @@ onMounted(()=>{
                                 <h3>
                                     Malumot Russ
                                 </h3>
-                                <textarea  class="teacher-info" name="" id="textrus" cols=""
+                                <textarea  class="menu-info" name="" id="textrus" cols=""
                                     rows=""></textarea>
                             </label>
                             <label for="textuzb">
                                 <h3>
                                     Malumot Uzb
                                 </h3>
-                                <textarea  class="teacher-info" name="" id="textuzb" cols=""
+                                <textarea  class="menu-info" name="" id="textuzb" cols=""
                                     rows=""></textarea>
                             </label>
                         </div>
@@ -403,19 +627,19 @@ onMounted(()=>{
                             </svg>
                         </button>
                     </div>
-                    <form>
+                    <form @submit.prevent="createCategory">
                         <div class="form-grid ">
                             <label for="turrus">
                                 <h3>
                                     Nom Russ
                                 </h3>
-                                <input  required id="turrus" type="text">
+                                <input v-modal="category.name_rus" required id="turrus" type="text">
                             </label>
                             <label for="turuz">
                                 <h3>
                                     Nom Uzb
                                 </h3>
-                                <input  required id="turuz" type="text">
+                                <input v-modal="category.name_uzb" required id="turuz" type="text">
                             </label>
                         </div>
                         <button class="submitBtn" type="submit">
