@@ -3,6 +3,32 @@ import '@/assets/Style/Contact/Hero.css'
 import '@/assets/Style/Contact/Form.css'
 import '@/assets/Style/Contact/Map.css'
 import '@/assets/Style/Home/Contact.css'
+import { reactive } from 'vue';
+import axios from '@/services/axios'
+
+
+const contact = reactive ({
+    phone: "",
+    info: "",
+})
+const createContact = () => {
+    const data = {
+        phone: String(contact.phone),
+        info: contact.info,
+    };
+
+    axios
+        .post("/contact/create", data, {
+        })
+        .then((res) => {
+            console.log(res)
+            contact.phone = "";
+            contact.info = "";
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
 </script>
 <template>
     <section class="Contact-hero">
@@ -17,15 +43,15 @@ import '@/assets/Style/Home/Contact.css'
     <section class="Contact-form">
         <div class="container">
             <div class="Contact-form-wrapper">
-                <form>  
+                <form @submit.prevent="createContact">  
                     <h2>
                         O`z fikiringizdi qoldiring 
                     </h2>
                     <label for="name">
-                        <input class="Con-name" type="text" id="name" placeholder="Ismingiz">
+                        <input v-model="contact.phone" class="Con-name" type="text" id="name" placeholder="Ismingiz">
                     </label>
                     <label for="info">
-                        <textarea placeholder="Fikiringizdi yozing" name="" id="info" cols="30" rows="10"></textarea>
+                        <textarea v-model="contact.info" placeholder="Fikiringizdi yozing" name="" id="info" cols="30" rows="10"></textarea>
                     </label>
                     <button class="form-btn" type="submit">
                         Yuborish

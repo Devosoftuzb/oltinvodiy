@@ -1,4 +1,4 @@
-.MenuAdmin{
+.Category{
     background-color: #1A0A0A;
     display: flex;
     /* overflow: hidden; */
@@ -6,20 +6,20 @@
     height: 100%;
     position: relative;
 }
-.MenuAdmin-content{
+.Category-content{
     width: 100%;
 }
-.MenuAdmin-header{
+.Category-header{
     width: 100%;
     padding: 30px 20px;
     background-color: #D9A359;
 }
-.MenuAdmin-header-wrapper{
+.Category-header-wrapper{
     display: flex;
     align-items: center;
     gap: 30px;
 }
-.MenuAdmin-header-btn{
+.Category-header-btn{
     background-color: #1A0A0A;
     padding: 10px 20px;
     border: #1A0A0A 2px solid ;
@@ -29,17 +29,17 @@
     color: #D9A359;
     font-weight: bold;
 }
-.MenuAdmin-header-btn:hover{
+.Category-header-btn:hover{
     background-color: #D9A359;
     color: #1A0A0A;
     cursor: pointer;
 }
-.MenuAdmin-header h1{
+.Category-header h1{
     color: #1A0A0A;
     font-family: "Roboto", sans-serif;
     font-size: 30px;
 }
-.MenuAdmin-main{
+.Category-main{
     padding: 30px 15px;
     padding-top: 10px;
 }
@@ -51,50 +51,50 @@
     background-color: transparent;
     border: none;
 }
-.MenuAdmin-table{
+.Category-table{
     width: 100%;
 }
-.MenuAdmin table{
+.Category table{
     width: 100%;
 }
-.MenuAdmin thead{
+.Category thead{
     width: 100%;
 }
-.MenuAdmin table thead tr{
+.Category table thead tr{
     width: 100%;
 }
-.MenuAdmin table tbody{
+.Category table tbody{
     width: 100%;
 }
-.MenuAdmin table tbody tr{
+.Category table tbody tr{
     width: 100%;
 }
-.MenuAdmin table tbody tr img{
+.Category table tbody tr img{
     width: 200px;
     height: 150px;
     border-radius: 20px;
     border: 3px solid #1A0A0A;
 }
-.MenuAdmin table thead tr td {
+.Category table thead tr td {
     /* display: none; */
     text-align: center;
     padding: 20px;
     padding-top: 0;
     padding-bottom: 0;
 }
-.MenuAdmin table thead tr td h3{
+.Category table thead tr td h3{
     /* display: none; */
     color: #1A0A0A;
     font-size: 20px;
     font-family: "Roboto", sans-serif;
     padding-top: 20px;
 }
-.MenuAdmin tbody h3{
+.Category tbody h3{
     color: #1A0A0A;
     font-size: 20px;
     font-family: "Roboto", sans-serif;
 }
-.MenuAdmin tbody p{
+.Category tbody p{
     text-align: center;
     width: 500px;
     color: #1A0A0A;
@@ -102,7 +102,7 @@
     font-family: "Roboto", sans-serif;
     margin: 0 auto;
 }
-.MenuAdmin table tbody td {
+.Category table tbody td {
     text-align: center;
     padding-top: 20px;
 }
@@ -119,31 +119,27 @@
 .delate:hover {
     color: red;
 }
-.MenuAdmin img{
-    overflow: hidden;
-    object-fit: cover;
-    object-position: center;
-}
+
 .edit:hover {
     color: rgb(95, 95, 95);
 }
-.MenuAdmin table  {
+.Category table  {
     background-color: #D9A359;
     border-radius: 30px;
     padding-bottom: 30px;
 }
-.MenuAdmin-footer{
+.Category-footer{
     width: 100%;
     padding: 28px 15px;
     background-color: #D9A359;
 }
-.MenuAdmin-footer-wrapper{
+.Category-footer-wrapper{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.MenuAdmin-footer button{
+.Category-footer button{
     background-color: #1A0A0A;
     color: #D9A359;
     font-size: 25px;
@@ -156,11 +152,11 @@
     cursor: pointer;
     transition: 0.5s;
 }
-.MenuAdmin-footer button:hover{
+.Category-footer button:hover{
     background-color: #D9A359;
     color: #1A0A0A;
 }
-.MenuAdmin-footer span{
+.Category-footer span{
     color: #1A0A0A;
     font-size: 20px;
     font-family: "Roboto", sans-serif;
@@ -187,7 +183,7 @@
 .header-burger{
     display: none;
 }
-.MenuAdmin-nav span{
+.Category-nav span{
     font-size: 25px;
     color: #E5CFB2;
     font-family: "Source Sans 3", sans-serif; 
@@ -196,14 +192,14 @@
     padding: 5px 10px;
     cursor: pointer;
 }
-.MenuAdmin-nav{
+.Category-nav{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 50px;
     margin-bottom: 10px;
 }
-.MenuAdmin-nav .active {
+.Category-nav .active {
     background-color: #D0B08B;
     color: #1A0A0A;
 }
@@ -470,28 +466,15 @@ input[type=number]::-webkit-outer-spin-button {
 .oppen-Category-Modal{
    display: block; 
 }
-.modal-footer select {
-    background-color: #1A0A0A;
-    color: white;
-    outline: none;
-    cursor: pointer;
-    padding: 10px 20px;
-    border-radius: 10px;
-}
-.modal-footer select option{
-    padding: 5px !important;
-    cursor: pointer;
-    border-radius: 30px;
-}
 @media(max-width:1400px){
-    .MenuAdmin-table {
+    .Category-table {
         overflow: auto;
         overflow-x: scroll;
         width: 100%;
         
     }
 
-    .MenuAdmin-table table {
+    .Category-table table {
         width: 1400px;
         overflow: auto;
         overflow-x: scroll;
@@ -501,12 +484,12 @@ input[type=number]::-webkit-outer-spin-button {
     .header-burger{
         display: block;
     }
-    .MenuAdmin-header{
+    .Category-header{
         padding-top: 5px;
     }
 }
 @media(max-width:750px){
-    .MenuAdmin-nav{
+    .Category-nav{
         flex-wrap: wrap;
         justify-content: flex-start;
         gap: 10px;

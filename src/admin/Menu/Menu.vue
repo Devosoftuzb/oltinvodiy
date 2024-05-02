@@ -36,44 +36,28 @@ const setImg = (e) => {
 };
 
 const store = reactive({
+    categoryAll: false,
     menuAll: false,
     pagMenuAll: [],
     pag: 0,
 });
-const category = reactive({
-    name_uzb:"",
-    name_rus:"",
-})
 const menu = reactive({
     title_uzb: "",
     title_rus: "",
     body_uzb: "",
     body_rus: "",
+    price:"",
+    category_id:0,
 })
-
-const editMenu = reactive({
+const edit = reactive({
     id:0,
     title_uzb: "",
     title_rus: "",
     body_uzb: "",
     body_rus: "",
+    price: "",
 });
 
-const deleteCategory = (id) => {
-    axios
-        .delete(`/category/delete/${id}`, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-        })
-        .then((res) => {
-            getAllCategory()
-            location.reload()
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-}
 const deleteMenu = (id) => {
     axios
         .delete(`/menu/delete/${id}`, {
@@ -96,10 +80,11 @@ const getOneMenu = (id) => {
         })
         .then((res) => {
             getImg.value = res.data.image
-            editMenu.title_uzb = res.data.full_name;
-            editMenu.title_rus = res.data.profession
-            editMenu.body_uzb = res.data.info
-            editMenu.body_rus = res.data.number
+            edit.title_uzb = res.data.title_uzb;
+            edit.title_rus = res.data.title_rus
+            edit.body_uzb = res.data.body_uzb
+            edit.body_rus = res.data.body_rus
+            edit.price = res.data.price
             openChange.value = true;
         })
         .catch((error) => {
@@ -114,6 +99,8 @@ const editmenu = () => {
         title_rus: edit.title_rus,
         body_uzb: edit.body_uzb,
         body_rus: edit.body_rus,
+        price: edit.price,
+        // category_id:edit.category_id
     };
 
     const formData = new FormData();
@@ -122,17 +109,17 @@ const editmenu = () => {
     }
 
     axios
-        .put(`/menu/update/${edit.id}`, formData, {
+        .put(`/menu/update/${edit.id}`, formData,{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         })
         .then((res) => {
-            edit.id = 0
             edit.title_uzb = ""
             edit.title_rus = ""
             edit.body_uzb = ""
             edit.body_rus = ""
+            edit.price =""
             getAllMenu()
             location.reload()
         })
@@ -140,43 +127,24 @@ const editmenu = () => {
             console.log("error", error);
         });
 };
-const createCategory = () => {
-    const data = {
-        image: getImg.value,
-        name_uzb: category.name_uzb,
-        name_rus: category.name_rus,
-    };
 
-    const formData = new FormData();
-    for (let i of Object.keys(data)) {
-        formData.append(i, data[i]);
-    }
-
-
-    axios
-        .post("/menu/create", {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-        })
-        .then((res) => {
-            category.name_uzb = "";
-            category.name_rus = "";
-            getAllCategory()
-            location.reload()
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-}
 const createMenu = () => {
+    for(let i in store.categoryAll) {
+        if (store.categoryAll[i].name_uzb == menu.category_id){
+            menu.category_id = store.categoryAll[i].id
+        }
+    }
+    console.log(menu.category_id);
+    
     const data = {
         image: getImg.value,
         title_uzb: menu.title_uzb,
         title_rus: menu.title_rus,
         body_uzb: menu.body_uzb,
         body_rus:menu.body_rus,
-    };
+        price:menu.price,
+        category_id:menu.category_id
+    }; 
 
     const formData = new FormData();
     for (let i of Object.keys(data)) {
@@ -195,6 +163,7 @@ const createMenu = () => {
             menu.title_rus = "";
             menu.body_uzb = "";
             menu.body_rus = "";
+            menu.price = String("");
             modal.value = false
             getAllMenu()
             location.reload()
@@ -203,19 +172,6 @@ const createMenu = () => {
             console.log(error);
         });
 }
-
-const getAllCategory = () => {
-    axios
-        .get("/menu/find-all", {
-        })
-        .then((res) => {
-            
-        })
-        .catch((error) => {
-            // store.error = true;
-            console.log(error);
-        });
-};
 const getAllMenu = () => {
     axios
         .get("/menu/find-all", {
@@ -244,7 +200,20 @@ const getAllMenu = () => {
             console.log(error);
         });
 };
-
+const getAllCategory = () => {
+    axios
+        .get("/category/find-all", {
+        })
+        .then((res) => {
+            store.categoryAll = res.data
+            store.categoryAll = store.categoryAll.reverse()
+            let cat = []
+        })
+        .catch((error) => {
+            // store.error = true;
+            console.log(error);
+        });
+};
 onMounted(()=>{
     window.scroll(0,0);
     getAllMenu();
@@ -271,24 +240,12 @@ onMounted(()=>{
                     <button @click="oppenModal" class="MenuAdmin-header-btn">
                         Qo'shish
                     </button>
-                    <button @click="oppenCategory" class="MenuAdmin-header-btn">
-                        Turkum Qo`shish
-                    </button>
                 </div>
             </div>
             <div class="MenuAdmin-main">
                 <div class="MenuAdmin-nav">
-                    <span @click="changeBackground(null)" :class="{ active: activeIndex === null }">
-                        Milliy taomlar
-                    </span>
-                    <span @click="changeBackground(1)" :class="{ active: activeIndex === 1 }">
-                        Xorijiy taomlar
-                    </span>
-                    <span @click="changeBackground(2)" :class="{ active: activeIndex === 2 }">
-                        Salatlar
-                    </span>
-                    <span @click="changeBackground(3)" :class="{ active: activeIndex === 3 }">
-                        Ichimlik
+                    <span @click="changeBackground(null)" :class="{ active: activeIndex === null }"  v-for="i in store.categoryAll" :key="i.id" >
+                        {{ i.name_uzb }}
                     </span>
                 </div>
                 <div class="MenuAdmin-table">
@@ -322,107 +279,35 @@ onMounted(()=>{
                                 </td>
                             </tr>
                         </thead>
-                         <tbody>
-                            <tr>
+                         <tbody v-for="i in store.pagMenuAll[store.pag]" :key="i.id">
+                            <tr >
                                 <td>
-                                    <img src="https://frndsdubai.com/wp-content/uploads/2022/12/F.R.N.D.S.-Cafe_Tape-Agency_043_30.11.2022-scaled.jpg" alt="foto">
+                                    <img :src="CONFIG.API_URL + i.image" alt="foto">
                                 </td>
                                 <td>
                                     <h3>
-                                        Sho`rva
+                                        {{ i.title_uzb }}
                                     </h3>
                                 </td>
                                     <td>
                                         <p>
-                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos, cupiditate ipsam? Unde obcaecati voluptate illum eaque placeat doloribus perspiciatis id.
+                                            {{ i.body_uzb }}
                                         </p>
                                     </td>
                                     <td>
                                         <h3>
-                                            20000 s`om
+                                            {{ i.price }} so`m
                                         </h3>
                                     </td>
                                     <td>
-                                        <button class="delete">
+                                        <button class="delete" @click="deleteMenu(i.id)">
                                             <svg class="delate" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 viewBox="0 0 24 24">
                                                 <path fill="currentColor"
                                                     d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" />
                                             </svg>
                                         </button>
-                                        <button @click="openModalChange"  class="edit">
-                                            <svg class="change" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z" />
-                                            </svg>
-                                        </button>
-                                    </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="https://frndsdubai.com/wp-content/uploads/2022/12/F.R.N.D.S.-Cafe_Tape-Agency_043_30.11.2022-scaled.jpg" alt="foto">
-                                </td>
-                                <td>
-                                    <h3>
-                                        Sho`rva
-                                    </h3>
-                                </td>
-                                    <td>
-                                        <p>
-                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos, cupiditate ipsam? Unde obcaecati voluptate illum eaque placeat doloribus perspiciatis id.
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <h3>
-                                            20000 s`om
-                                        </h3>
-                                    </td>
-                                    <td>
-                                        <button class="delete">
-                                            <svg class="delate" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" />
-                                            </svg>
-                                        </button>
-                                        <button  class="edit">
-                                            <svg class="change" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z" />
-                                            </svg>
-                                        </button>
-                                    </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="https://frndsdubai.com/wp-content/uploads/2022/12/F.R.N.D.S.-Cafe_Tape-Agency_043_30.11.2022-scaled.jpg" alt="foto">
-                                </td>
-                                <td>
-                                    <h3>
-                                        Sho`rva
-                                    </h3>
-                                </td>
-                                    <td>
-                                        <p>
-                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos, cupiditate ipsam? Unde obcaecati voluptate illum eaque placeat doloribus perspiciatis id.
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <h3>
-                                            20000 s`om
-                                        </h3>
-                                    </td>
-                                    <td>
-                                        <button class="delete">
-                                            <svg class="delate" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" />
-                                            </svg>
-                                        </button>
-                                        <button  class="edit">
+                                        <button @click="getOneMenu(i.id)"  class="edit">
                                             <svg class="change" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 viewBox="0 0 24 24">
                                                 <path fill="currentColor"
@@ -437,7 +322,7 @@ onMounted(()=>{
             </div>
             <div class="MenuAdmin-footer">
                 <div class="MenuAdmin-footer-wrapper">
-                    <button>
+                    <button @click="store.pag == 0 ? store.pag = store.pagMenuAll.length - 1  : store.pag -= 1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" d="M5 12h14M5 12l6 6m-6-6l6-6" />
@@ -445,16 +330,16 @@ onMounted(()=>{
                     </button>
                     <div class="MenuAdmin-footer-content">
                         <span>
-                            1
+                            {{ store.pag + 1 }}
                         </span>
                         <span>
                             /
                         </span>
                         <span>
-                            2
+                            {{ store.pagMenuAll.length }}
                         </span>
                     </div>
-                    <button>
+                    <button @click="store.pag + 1 == store.pagMenuAll.length ? store.pag = 0 : store.pag += 1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
                             <path fill="currentColor"
                                 d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018a.751.751 0 0 1-.018-1.042l2.97-2.97H3.75a.75.75 0 0 1 0-1.5h7.44L8.22 4.03a.75.75 0 0 1 0-1.06" />
@@ -478,19 +363,19 @@ onMounted(()=>{
                     </button>
                 </div>  
                 <div class="create-modal-main">
-                    <form >
+                    <form @submit.prevent="createMenu">
                         <div class="form-grid form-name">
                             <label for="fio">
                                 <h3>
                                     Nom Russ
                                 </h3>
-                                <input  required id="fio" type="text">
+                                <input v-model="menu.title_rus" required id="fio" type="text">
                             </label>
                             <label for="fio">
                                 <h3>
                                     Nom Uzb
                                 </h3>
-                                <input  required id="fio" type="text">
+                                <input v-model="menu.title_uzb" required id="fio" type="text">
                             </label>
                         </div>
                         <div class="form-grid">
@@ -498,7 +383,7 @@ onMounted(()=>{
                                 <h3>
                                     Narx
                                 </h3>
-                                <input  class="inp-number" required id="raqam" type="number">
+                                <input v-model="menu.price" class="inp-number" required id="raqam" type="number">
                             </label>
                             <div class="modal-foto">
                                 <h3>
@@ -508,7 +393,7 @@ onMounted(()=>{
                                     <span>
                                         Rasm tanglang
                                     </span>
-                                    <input type="file" >
+                                    <input @change="(e) => setImg(e)" type="file" >
                                 </label>
                             </div>
                         </div>
@@ -517,18 +402,23 @@ onMounted(()=>{
                                 <h3>
                                     Malumot Russ
                                 </h3>
-                                <textarea  class="menu-info" name="" id="textrus" cols=""
+                                <textarea v-model="menu.body_rus" class="menu-info" name="" id="textrus" cols=""
                                     rows=""></textarea>
                             </label>
                             <label for="textuzb">
                                 <h3>
                                     Malumot Uzb
                                 </h3>
-                                <textarea  class="menu-info" name="" id="textuzb" cols=""
+                                <textarea v-model="menu.body_uzb" class="menu-info" name="" id="textuzb" cols=""
                                     rows=""></textarea>
                             </label>
                         </div>
                         <div class="modal-footer">
+                                <select v-model="menu.category_id">
+                                    <option v-for="i in store.categoryAll" :key="i.id">
+                                        {{ i.name_uzb }}
+                                    </option>
+                                </select>
                             <button class="submitBtn" type="submit">
                                 Menu qoshish
                             </button>
@@ -553,19 +443,19 @@ onMounted(()=>{
                     </button>
                 </div>  
                 <div class="change-main">
-                    <form >
+                    <form @submit.prevent="editmenu">
                         <div class="form-grid form-name">
                             <label for="fio">
                                 <h3>
                                     Nom Russ
                                 </h3>
-                                <input  required id="fio" type="text">
+                                <input v-model="edit.title_rus" required id="fio" type="text">
                             </label>
                             <label for="fio">
                                 <h3>
                                     Nom Uzb
                                 </h3>
-                                <input  required id="fio" type="text">
+                                <input v-model="edit.title_uzb" required id="fio" type="text">
                             </label>
                         </div>
                         <div class="form-grid">
@@ -573,7 +463,7 @@ onMounted(()=>{
                                 <h3>
                                     Narx
                                 </h3>
-                                <input  class="inp-number" required id="raqam" type="number">
+                                <input v-model="edit.price" class="inp-number" required id="raqam" type="number">
                             </label>
                             <div class="modal-foto">
                                 <h3>
@@ -583,7 +473,7 @@ onMounted(()=>{
                                     <span>
                                         Rasm tanglang
                                     </span>
-                                    <input type="file" >
+                                    <input @change="(e) => setImg(e)" type="file">
                                 </label>
                             </div>
                         </div>
@@ -592,59 +482,27 @@ onMounted(()=>{
                                 <h3>
                                     Malumot Russ
                                 </h3>
-                                <textarea  class="menu-info" name="" id="textrus" cols=""
+                                <textarea v-model="edit.body_rus" class="menu-info" name="" id="textrus" cols=""
                                     rows=""></textarea>
                             </label>
                             <label for="textuzb">
                                 <h3>
                                     Malumot Uzb
                                 </h3>
-                                <textarea  class="menu-info" name="" id="textuzb" cols=""
+                                <textarea v-model="edit.body_uzb" class="menu-info" name="" id="textuzb" cols=""
                                     rows=""></textarea>
                             </label>
                         </div>
                         <div class="modal-footer">
+                            <select v-model="edit.category_id">
+                                <option v-for="i in store.categoryAll" :key="i.id">
+                                    {{ i.name_uzb }}
+                                </option>
+                            </select>
                             <button class="submitBtn" type="submit">
                                 Menu O`zgartirish
                             </button>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="Category-modal-bg" :class="{'oppen-Category-Modal': Category}">
-            <div class="Category-modal">
-                <div class="Category-header">
-                    <div class="Category-modal-header">
-                        <h1>
-                            Turkum qo`shish
-                        </h1>
-                        <button @click="oppenCategory">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14">
-                                <path fill="currentColor" fill-rule="evenodd"
-                                    d="M1.707.293A1 1 0 0 0 .293 1.707L5.586 7L.293 12.293a1 1 0 1 0 1.414 1.414L7 8.414l5.293 5.293a1 1 0 0 0 1.414-1.414L8.414 7l5.293-5.293A1 1 0 0 0 12.293.293L7 5.586z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                    </div>
-                    <form @submit.prevent="createCategory">
-                        <div class="form-grid ">
-                            <label for="turrus">
-                                <h3>
-                                    Nom Russ
-                                </h3>
-                                <input v-modal="category.name_rus" required id="turrus" type="text">
-                            </label>
-                            <label for="turuz">
-                                <h3>
-                                    Nom Uzb
-                                </h3>
-                                <input v-modal="category.name_uzb" required id="turuz" type="text">
-                            </label>
-                        </div>
-                        <button class="submitBtn" type="submit">
-                            Menu qoshish
-                        </button>
                     </form>
                 </div>
             </div>

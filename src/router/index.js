@@ -57,6 +57,11 @@ const router = createRouter({
       component:() => import('../admin/Habarlar/Habarlar.vue'),
     },
     {
+      path:"/CategoryAdmin",
+      name:"category",
+      component:() => import('../admin/Category/Category.vue'),
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "error",
       component: () => import("../views/Error/Error.vue"),
@@ -68,5 +73,21 @@ const router = createRouter({
     },
   ]
 })
+router.beforeEach((to, from, next) => {
+  let token = localStorage.getItem("token");
 
+  if (
+    (to.name == "admin" ||
+      to.name == "gallaryAdmin" ||
+      to.name == "menuAdmin" ||
+      to.name == "category" ||
+      to.name == "habarlarAdmin") &&
+    to.name !== "login" &&
+    !token
+  ) {
+    next({ name: "login" });
+  } else {
+    next();
+  }
+});
 export default router

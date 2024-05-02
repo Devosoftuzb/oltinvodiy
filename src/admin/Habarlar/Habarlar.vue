@@ -1,7 +1,8 @@
 <script setup>
 import Saidbar from "../../components/Saidbar.vue"
 import '@/assets/Style/Admin/Habarlar.css'
-
+import { onMounted, reactive } from "vue";
+import axios from "@/services/axios";
 import { useSidebarStore } from '@/stores/saidbar.js';
 
 const sidebar = useSidebarStore();
@@ -9,6 +10,61 @@ function burger() {
     sidebar.sidebar = !sidebar.sidebar
     modal.classList.toggle('db');
 }
+
+
+const store = reactive({
+    contactAll: false,
+    pagContactAll: [],
+    pag: 0,
+});
+
+const getAllContact = () => {
+    axios
+        .get("/contact/find-all", {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            }
+        })
+        .then((res) => {
+            store.contactAll = res.data
+            store.contactAll = store.contactAll.reverse()
+            let contact = []
+            for (let i in store.contactAll) {
+                contact.push(store.contactAll[i])
+                if (contact.length == 5) {
+                    store.pagContactAll.push(contact)
+                    contact = []
+                }
+                if ((Number(i) + 1) == store.contactAll.length && (store.pagContactAll.length == 0 || contact.length > 0)) {
+                    store.pagContactAll.push(contact)
+                    contact = []
+                }
+            }
+        })
+        .catch((error) => {
+            store.error = true;
+        });
+};
+
+const deleteContact = (id) => {
+    axios
+        .delete(`/contact/delete/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        })
+        .then((res) => {
+            getAllContact()
+            location.reload()
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
+onMounted(() => {
+    getAllContact();
+});
 </script>
 <template>
     <div class="HabarlarAdmin">
@@ -49,20 +105,20 @@ function burger() {
                                 </td>
                             </tr>
                         </thead>
-                         <tbody>
-                            <tr>
+                         <tbody >
+                            <tr v-for="i in store.pagContactAll[store.pag]" :key="i.id">
                                 <td>
                                     <h3>
-                                        Sho`rva
+                                        {{ i.phone }}
                                     </h3>
                                 </td>
                                     <td>
                                         <p>
-                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos, cupiditate ipsam? Unde obcaecati voluptate illum eaque placeat doloribus perspiciatis id.
+                                            {{ i.info }}
                                         </p>
                                     </td>
                                     <td>
-                                        <button class="delete">
+                                        <button class="delete" @click="deleteContact(i.id)">
                                             <svg class="delate" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                                 viewBox="0 0 24 24">
                                                 <path fill="currentColor"
