@@ -48,6 +48,9 @@
     background-color: transparent;
     color: #CA9554;
 }
+.Login-logo img{
+    width: 130px;
+}
 @media(max-width:350px){
     .Login-wrapper{
         width: 100%;

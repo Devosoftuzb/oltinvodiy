@@ -6,9 +6,7 @@ import '@/assets/Style/Footer.css'
         <div class="container">
             <div class="footer-wrapper">
                 <div class="footer-logo">
-                    <h1>
-                        Oltin vodiy
-                    </h1>
+                    <img   src="/public/header-logo.png" alt="">
                 </div>
                 <div class="footer-card">
                     <h3>

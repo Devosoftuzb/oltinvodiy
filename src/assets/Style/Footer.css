@@ -40,6 +40,10 @@ footer{
 .footer-media svg:hover{
     color: white;
 }
+.footer-logo img{
+    width: 120px;
+    height: ;
+}
 @media(max-width:750px){
     .footer-wrapper{
         flex-direction: column;

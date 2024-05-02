@@ -2,11 +2,10 @@
 <header id="header" :class="{ 'header_bg': isScrolled }">
     <div class="header-wrapper">
         <div class="header-logo">
-            <h1>
+            <!-- <h1>
                 Oltin <span>vodiy</span> 
-            </h1>
-            <!-- <img class="logo"  src="/public/header-logo.png" alt="">
-            <img class="mobile-logo"  src="/public/mobile-logo.png" alt=""> -->
+            </h1> -->
+            <img class="logo"  src="/public/header-logo.png" alt="">
         </div>
         <nav class="header-menu">
             <router-link @click="ScTop"  to="/" class="header-menu-item">
@@ -55,9 +54,7 @@
     <div class="header-modal-mobile" :class="{'ModalClose': closeModal}">
        <div class="header-modal-mobile-wrapper" >
         <div class="header-logo-mobile">
-            <h1>
-                Oltin <span>vodiy</span> 
-            </h1>
+            <img  class="header-logo-mobile"  src="/public/header-logo.png" alt="">
         </div>
         <nav class="header-menu-mobile">
             <router-link @click="closeMenu"  to="/" class="header-menu-item" >

@@ -1,6 +1,6 @@
 header{
     background-color: #130202;
-    padding: 35px 80px;
+    padding: 25px 80px;
     width: 100%;
     position:fixed;
     z-index: 33;
@@ -191,6 +191,14 @@ header{
 .ModalClose{
     
 }
+.logo{
+    width: 130px;
+    height: 100px;
+}
+.header-logo-mobile{
+    width: 100px !important;
+    height: 80px !important;
+}
 @media(max-width:1090px){
     .header-menu{
         display: none;
@@ -201,14 +209,6 @@ header{
     .burger{
         display: block;
     }
-    .mobile-logo{
-        display: block;
-        width: 200px;
-        height: 200px;
-    }
-    .logo{
-        display: none;
-    }
 }
 @media(max-width:550px){
     .Header-btn button{
@@ -218,6 +218,10 @@ header{
     .header-btn a{
         padding: 7px 10px;
         border-radius: 10px;
+    }
+    .logo{
+        width: 90px;
+        height: 60px;
     }
 }
 @media(max-width:400px){

@@ -34,9 +34,7 @@ const loginAdmin = () => {
         <div class="Login-wrapper">
             <form @submit.prevent="loginAdmin">
                 <div class="Login-logo">
-                    <h1>
-                        Oltin vodiy
-                    </h1>
+                  <img   src="/public/header-logo.png" alt="">
                 </div>
                 <input v-model="login.email" type="email" placeholder="Email" required>
                 <input v-model="login.password" type="password" placeholder="Password" required>
