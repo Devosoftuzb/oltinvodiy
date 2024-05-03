@@ -7,10 +7,10 @@ import axios from '@/services/axios'
 import CONFIG from '../../stores/config'
 
 
-   
+
 
 const Category = ref(false)
-const oppenCategory = () => (Category.value =!Category.value)
+const oppenCategory = () => (Category.value = !Category.value)
 const modal = ref(false)
 const oppenModal = () => (modal.value = !modal.value)
 const openChange = ref(false)
@@ -24,7 +24,7 @@ function burger() {
 const activeIndex = ref(null);
 
 const changeBackground = (index) => {
-  activeIndex.value = index;
+    activeIndex.value = index;
 
 };
 
@@ -40,17 +40,18 @@ const store = reactive({
     menuAll: false,
     pagMenuAll: [],
     pag: 0,
+    menuCategory: [],
 });
 const menu = reactive({
     title_uzb: "",
     title_rus: "",
     body_uzb: "",
     body_rus: "",
-    price:"",
-    category_id:0,
+    price: "",
+    category_id: 0,
 })
 const edit = reactive({
-    id:0,
+    id: 0,
     title_uzb: "",
     title_rus: "",
     body_uzb: "",
@@ -85,6 +86,8 @@ const getOneMenu = (id) => {
             edit.body_uzb = res.data.body_uzb
             edit.body_rus = res.data.body_rus
             edit.price = res.data.price
+            edit.category_id = res.data.category_id
+            edit.id = id
             openChange.value = true;
         })
         .catch((error) => {
@@ -93,6 +96,11 @@ const getOneMenu = (id) => {
 };
 
 const editmenu = () => {
+    for (let i in store.categoryAll) {
+        if (store.categoryAll[i].name_uzb == menu.category_id) {
+            menu.category_id = store.categoryAll[i].id
+        }
+    }
     const data = {
         image: getImg.value,
         title_uzb: edit.title_uzb,
@@ -100,6 +108,7 @@ const editmenu = () => {
         body_uzb: edit.body_uzb,
         body_rus: edit.body_rus,
         price: edit.price,
+        category_id: edit.category_id
         // category_id:edit.category_id
     };
 
@@ -109,7 +118,7 @@ const editmenu = () => {
     }
 
     axios
-        .put(`/menu/update/${edit.id}`, formData,{
+        .put(`/menu/update/${edit.id}`, formData, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -119,7 +128,7 @@ const editmenu = () => {
             edit.title_rus = ""
             edit.body_uzb = ""
             edit.body_rus = ""
-            edit.price =""
+            edit.price = ""
             getAllMenu()
             location.reload()
         })
@@ -129,22 +138,22 @@ const editmenu = () => {
 };
 
 const createMenu = () => {
-    for(let i in store.categoryAll) {
-        if (store.categoryAll[i].name_uzb == menu.category_id){
+    for (let i in store.categoryAll) {
+        if (store.categoryAll[i].name_uzb == menu.category_id) {
             menu.category_id = store.categoryAll[i].id
         }
     }
     console.log(menu.category_id);
-    
+
     const data = {
         image: getImg.value,
         title_uzb: menu.title_uzb,
         title_rus: menu.title_rus,
         body_uzb: menu.body_uzb,
-        body_rus:menu.body_rus,
-        price:menu.price,
-        category_id:menu.category_id
-    }; 
+        body_rus: menu.body_rus,
+        price: menu.price,
+        category_id: menu.category_id
+    };
 
     const formData = new FormData();
     for (let i of Object.keys(data)) {
@@ -172,6 +181,45 @@ const createMenu = () => {
             console.log(error);
         });
 }
+
+const getAllCategory = () => {
+    axios
+        .get("/category/find-all", {
+        })
+        .then((res) => {
+            store.categoryAll = res.data
+            store.categoryAll = store.categoryAll.reverse()
+            let cat = []
+        })
+        .catch((error) => {
+            // store.error = true;
+            console.log(error);
+        });
+};
+const category = (id) => {
+    store.pagMenuAll = []
+    store.menuCategory = []
+    for (let i in store.menuAll) {
+        if (store.menuAll[i].category_id == id) {
+            store.menuCategory.push(store.menuAll[i])
+        }
+    }
+    let Menu = []
+    if (store.menuCategory) {
+        for (let i in store.menuCategory) {
+            Menu.push(store.menuCategory[i])
+            if (Menu.length == 3) {
+                store.pagMenuAll.push(Menu)
+                Menu = []
+            }
+            if ((Number(i) + 1) == store.menuCategory.length && (store.pagMenuAll.length == 0 || Menu.length > 0)) {
+                store.pagMenuAll.push(Menu)
+                Menu = []
+            }
+        }
+    }
+    
+}
 const getAllMenu = () => {
     axios
         .get("/menu/find-all", {
@@ -184,7 +232,7 @@ const getAllMenu = () => {
             });
             let Menu = []
             for (let i in store.menuAll) {
-                    Menu.push(store.menuAll[i])
+                Menu.push(store.menuAll[i])
                 if (Menu.length == 3) {
                     store.pagMenuAll.push(Menu)
                     Menu = []
@@ -200,29 +248,18 @@ const getAllMenu = () => {
             console.log(error);
         });
 };
-const getAllCategory = () => {
-    axios
-        .get("/category/find-all", {
-        })
-        .then((res) => {
-            store.categoryAll = res.data
-            store.categoryAll = store.categoryAll.reverse()
-            let cat = []
-        })
-        .catch((error) => {
-            // store.error = true;
-            console.log(error);
-        });
-};
-onMounted(()=>{
-    window.scroll(0,0);
-    getAllMenu();
+
+onMounted(() => {
+    window.scroll(0, 0);
+    category();
     getAllCategory();
+    getAllMenu()
 })
+
 </script>
 <template>
     <div class="MenuAdmin">
-        <Saidbar/>
+        <Saidbar />
         <div class="MenuAdmin-content">
             <div class="header-burger">
                 <button @click="burger">
@@ -244,9 +281,10 @@ onMounted(()=>{
             </div>
             <div class="MenuAdmin-main">
                 <div class="MenuAdmin-nav">
-                    <span @click="changeBackground(null)" :class="{ active: activeIndex === null }"  v-for="i in store.categoryAll" :key="i.id" >
+                    <button @click="category(i.id)" :class="{ active: activeIndex === null }"
+                        v-for="i in store.categoryAll" :key="i.id">
                         {{ i.name_uzb }}
-                    </span>
+                    </button>
                 </div>
                 <div class="MenuAdmin-table">
                     <table>
@@ -279,8 +317,8 @@ onMounted(()=>{
                                 </td>
                             </tr>
                         </thead>
-                         <tbody v-for="i in store.pagMenuAll[store.pag]" :key="i.id">
-                            <tr >
+                        <tbody v-for="i in store.pagMenuAll[store.pag]" :key="i.id">
+                            <tr>
                                 <td>
                                     <img :src="CONFIG.API_URL + i.image" alt="foto">
                                 </td>
@@ -289,32 +327,32 @@ onMounted(()=>{
                                         {{ i.title_uzb }}
                                     </h3>
                                 </td>
-                                    <td>
-                                        <p>
-                                            {{ i.body_uzb }}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <h3>
-                                            {{ i.price }} so`m
-                                        </h3>
-                                    </td>
-                                    <td>
-                                        <button class="delete" @click="deleteMenu(i.id)">
-                                            <svg class="delate" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" />
-                                            </svg>
-                                        </button>
-                                        <button @click="getOneMenu(i.id)"  class="edit">
-                                            <svg class="change" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z" />
-                                            </svg>
-                                        </button>
-                                    </td>
+                                <td>
+                                    <p>
+                                        {{ i.body_uzb }}
+                                    </p>
+                                </td>
+                                <td>
+                                    <h3>
+                                        {{ i.price }} so`m
+                                    </h3>
+                                </td>
+                                <td>
+                                    <button class="delete" @click="deleteMenu(i.id)">
+                                        <svg class="delate" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" />
+                                        </svg>
+                                    </button>
+                                    <button @click="getOneMenu(i.id)" class="edit">
+                                        <svg class="change" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z" />
+                                        </svg>
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -322,7 +360,7 @@ onMounted(()=>{
             </div>
             <div class="MenuAdmin-footer">
                 <div class="MenuAdmin-footer-wrapper">
-                    <button @click="store.pag == 0 ? store.pag = store.pagMenuAll.length - 1  : store.pag -= 1">
+                    <button @click="store.pag == 0 ? store.pag = store.pagMenuAll.length - 1 : store.pag -= 1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" d="M5 12h14M5 12l6 6m-6-6l6-6" />
@@ -348,7 +386,7 @@ onMounted(()=>{
                 </div>
             </div>
         </div>
-        <div  :id="modal ? 'openModal' : ''" class="create-modal-bg">
+        <div :id="modal ? 'openModal' : ''" class="create-modal-bg">
             <div class="create-modal">
                 <div class="create-modal-header">
                     <h1>
@@ -361,7 +399,7 @@ onMounted(()=>{
                                 clip-rule="evenodd" />
                         </svg>
                     </button>
-                </div>  
+                </div>
                 <div class="create-modal-main">
                     <form @submit.prevent="createMenu">
                         <div class="form-grid form-name">
@@ -393,7 +431,7 @@ onMounted(()=>{
                                     <span>
                                         Rasm tanglang
                                     </span>
-                                    <input @change="(e) => setImg(e)" type="file" >
+                                    <input @change="(e) => setImg(e)" type="file">
                                 </label>
                             </div>
                         </div>
@@ -414,11 +452,11 @@ onMounted(()=>{
                             </label>
                         </div>
                         <div class="modal-footer">
-                                <select v-model="menu.category_id">
-                                    <option v-for="i in store.categoryAll" :key="i.id">
-                                        {{ i.name_uzb }}
-                                    </option>
-                                </select>
+                            <select v-model="menu.category_id">
+                                <option value="Name" v-for="i in store.categoryAll" :key="i.id">
+                                    {{ i.name_uzb }}
+                                </option>
+                            </select>
                             <button class="submitBtn" type="submit">
                                 Menu qoshish
                             </button>
@@ -427,8 +465,8 @@ onMounted(()=>{
                 </div>
             </div>
         </div>
-        
-        <div  :id="openChange ? 'openChange' : ''" class="modal-change">
+
+        <div :id="openChange ? 'openChange' : ''" class="modal-change">
             <div class="change-modal">
                 <div class="change-header">
                     <h1>
@@ -441,7 +479,7 @@ onMounted(()=>{
                                 clip-rule="evenodd" />
                         </svg>
                     </button>
-                </div>  
+                </div>
                 <div class="change-main">
                     <form @submit.prevent="editmenu">
                         <div class="form-grid form-name">
@@ -473,7 +511,7 @@ onMounted(()=>{
                                     <span>
                                         Rasm tanglang
                                     </span>
-                                    <input @change="(e) => setImg(e)" type="file">
+                                    <input required @change="(e) => setImg(e)" type="file">
                                 </label>
                             </div>
                         </div>
@@ -495,6 +533,9 @@ onMounted(()=>{
                         </div>
                         <div class="modal-footer">
                             <select v-model="edit.category_id">
+                                <option selected value="Turkum tanlang ">
+                                    Turkum tanlang
+                                </option>
                                 <option v-for="i in store.categoryAll" :key="i.id">
                                     {{ i.name_uzb }}
                                 </option>

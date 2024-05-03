@@ -187,7 +187,7 @@
 .header-burger{
     display: none;
 }
-.MenuAdmin-nav span{
+.MenuAdmin-nav button{
     font-size: 25px;
     color: #E5CFB2;
     font-family: "Source Sans 3", sans-serif; 
@@ -482,6 +482,16 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 5px !important;
     cursor: pointer;
     border-radius: 30px;
+}
+.MenuAdmin-nav button{
+    background-color: none;
+    border: none;
+}
+select{
+    color: white !important;
+}
+.modal-footer{
+    gap: 20px;
 }
 @media(max-width:1400px){
     .MenuAdmin-table {

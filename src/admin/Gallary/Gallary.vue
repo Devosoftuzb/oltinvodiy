@@ -13,12 +13,13 @@ function burger() {
 }
 const store = reactive({
     gallery:false,
+    pdf: false
 })
 
 const getImg = ref(null);
 const setImg = (e) => {
     getImg.value = e.target.files[0];
-    console.log(getImg.value);
+    console.log(getImg.value.type);           
     const data = {
         image: getImg.value,
     };
@@ -70,7 +71,13 @@ const getAllGallery = () => {
         })
         .then((res) => {
             store.gallery = res.data
-            console.log(res.data);
+            for(let i in store.gallery){
+                const lastThreeChars = store.gallery[i].image.substring(store.gallery[i].image.length - 3);
+                if(lastThreeChars == 'pdf'){
+                    store.pdf = store.gallery[i].image
+                    console.log(store.pdf);
+                }
+            }
         })
         .catch((error) => {
             console.log(error);
@@ -96,6 +103,9 @@ onMounted(() => {
                 <h1>
                     Gallary
                 </h1>
+                <button>
+                    <a :href="CONFIG.API_URL + store.pdf" download target="_blank">скачать</a>
+                </button>
             </div>
             <div class="GallaryAdmin-main">
                 <div class="GallaryAdmin-wrapper">
