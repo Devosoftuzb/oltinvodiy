@@ -62,6 +62,11 @@ const router = createRouter({
       component:() => import('../admin/Category/Category.vue'),
     },
     {
+      path:"/MenuPDF",
+      name:"menupdf",
+      component:() => import('../admin/MenuPdf/MenuPdf.vue'),
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "error",
       component: () => import("../views/Error/Error.vue"),
@@ -81,6 +86,7 @@ router.beforeEach((to, from, next) => {
       to.name == "gallaryAdmin" ||
       to.name == "menuAdmin" ||
       to.name == "category" ||
+      to.name == "menupdf" ||
       to.name == "habarlarAdmin") &&
     to.name !== "login" &&
     !token

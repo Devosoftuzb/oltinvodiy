@@ -1,26 +1,26 @@
-.GallaryAdmin{
+.PdfAdmin{
     background-color: #1A0A0A;
     display: flex;
     /* overflow: hidden; */
     width: 100%;
     height: 100vh;
 }
-.GallaryAdmin-content{
+.PdfAdmin-content{
     width: 100%;
     height: 100%;
     overflow-y: auto;
 }
-.GallaryAdmin-header{
+.PdfAdmin-header{
     width: 100%;
     padding: 30px 20px;
     background-color: #D9A359;
 }
-.GallaryAdmin-header h1{
+.PdfAdmin-header h1{
     color: #1A0A0A;
     font-family: "Roboto", sans-serif;
     font-size: 30px;
 }
-.GallaryAdmin-main{
+.PdfAdmin-main{
     padding: 30px 15px;
 }
 .file-upload {
@@ -60,7 +60,7 @@
     color: #D9A359;
     font-family: "Roboto", sans-serif;
   }
-  .GallaryAdmin-wrapper{
+  .PdfAdmin-wrapper{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     gap: 30px;
@@ -85,7 +85,7 @@
 .header-burger{
     display: none;
 }
-.GallaryAdmin-wrapper-card img{
+.PdfAdmin-wrapper-card img{
   overflow: hidden;
   object-fit: cover;
   object-position: center;
@@ -93,48 +93,66 @@
   width: 370px;
   height: 200px;
 }
-.gallary_bg{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.87);
-  display: none;
+.pdf-check{
+    position: relative;
+    width: 370px;
+    height: 200px;
+    background-color: #D9A359;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.GallaryAdmin-wrapper-card{
-  position: relative;
+.pdf-check h1{
+    color:#1A0A0A;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
-.GallaryAdmin-wrapper-card:hover{
-  .gallary_bg{
-      cursor: pointer;
-      display: block;
-  }
+.pdf-check h1 svg{
 
 }
-.gallary_bg button{
-  margin: 0 auto;
-  margin-top: 75px;
-  display: block;
-  font-size: 50px;
-  background-color: transparent;
-  border: none;
-  color: red;
+.pdf-bg{
+    background-color: rgba(0, 0, 0, 0.952);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 30px;
+
+    display: none;
+}
+.pdf-check:hover{
+    .pdf-bg{
+        cursor: pointer;
+        display: block;
+    }
+
+}
+.pdf-bg button{
+    margin: 0 auto;
+    margin-top: 75px;
+    display: block;
+    font-size: 50px;
+    background-color: transparent;
+    border: none;
+    color: red;
 }
   @media(max-width:1850px){
-    .GallaryAdmin-wrapper{
+    .PdfAdmin-wrapper{
         display: grid;
         grid-template-columns: repeat(3,1fr);
     }
   }
   @media(max-width:1530px){
-    .GallaryAdmin-wrapper{
+    .PdfAdmin-wrapper{
         display: grid;
         grid-template-columns: repeat(2,1fr);
     }
   }
   @media(max-width:1100px){
-    .GallaryAdmin-wrapper{
+    .PdfAdmin-wrapper{
         display: grid;
         grid-template-columns: repeat(1,1fr);
         align-items: center;
@@ -142,7 +160,7 @@
     }
   }
   @media(max-width:1000px){
-    .GallaryAdmin-wrapper{
+    .PdfAdmin-wrapper{
         display: grid;
         grid-template-columns: repeat(2,1fr);
         align-items: center;
@@ -153,12 +171,12 @@
     .header-burger{
         display: block;
     }
-    .GallaryAdmin-header{
+    .PdfAdmin-header{
         padding-top: 5px;
     }
 }
   @media(max-width:780px){
-    .GallaryAdmin-wrapper{
+    .PdfAdmin-wrapper{
         display: grid;
         grid-template-columns: repeat(1,1fr);
         align-items: center;
