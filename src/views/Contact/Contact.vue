@@ -5,6 +5,17 @@ import '@/assets/Style/Contact/Map.css'
 import '@/assets/Style/Home/Contact.css'
 import { reactive } from 'vue';
 import axios from '@/services/axios'
+import { ref, onMounted } from 'vue';
+import { gsap } from 'gsap';
+const con__title = ref(null);
+
+onMounted(() => {
+
+  gsap.fromTo(
+    con__title.value, 
+    { y: '-100%', opacity: 0 }, 
+    { y: '0%', opacity: 1, duration: 2, ease: 'power2.out' },
+  );})
 
 
 const contact = reactive ({
@@ -35,7 +46,7 @@ const createContact = () => {
         <div class="Contact-hero-shadow">
         </div>
         <div class="container">   
-            <h1>
+            <h1 ref="con__title">
                 Bog`lanish
             </h1>
         </div>

@@ -3,8 +3,9 @@
     import '@/assets/Style/Menu/Menu.css'
     import 'swiper/css';
     import 'swiper/css/navigation';
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
     import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
+    // import gsap from 'gsap';
     import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules';
     export default {
         components: {
@@ -26,6 +27,8 @@
       activeIndex.value = index;
     };
 
+   
+
     return {
       activeIndex,
       changeBackground,
@@ -45,7 +48,7 @@
             <div class="Menu-hero-shadow">
 
             </div>
-            <h1>
+            <h1 ref="Menu_title">
                 Menuy
             </h1>
         </div>

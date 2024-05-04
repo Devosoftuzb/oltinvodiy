@@ -2,13 +2,75 @@
 import '@/assets/Style/Gallary/Hero.css'
 import '@/assets/Style/Gallary/Foto.css'
 import '@/assets/Style/Home/Contact.css'
+import { ref, onMounted } from 'vue';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+const gallary_title = ref(null);
+
+gsap.registerPlugin(ScrollTrigger);
+onMounted(() => {
+
+  gsap.fromTo(
+    gallary_title.value, 
+    { y: '-100%', opacity: 0 }, 
+    { y: '0%', opacity: 1, duration: 2, ease: 'power2.out' },
+  );
+  gsap.fromTo('.contact-title',
+      {
+        y:'-100%',
+        opacity:0,
+      },
+      {
+        y:'0%',
+        opacity:1,
+        scrollTrigger:{
+          trigger:'.contact-title',
+          start:'top 90%',
+          scrub:1
+        }
+      }
+    )
+    gsap.fromTo('.contact-btn-item',
+      {
+        opacity:0,
+        x:'-100%',
+      },
+      {
+        opacity:1,
+        x:'0',
+        scrollTrigger:{
+          trigger:'.contact-btn-item',
+          end:'top 100%',
+          // markers:true,
+          scrub:5
+        }
+      }
+    )
+    gsap.fromTo('.contact-btn-tel',
+      {
+        opacity:0,
+        x:'100%',
+      },
+      {
+        opacity:1,
+        x:'0',
+        scrollTrigger:{
+          trigger:'.contact-btn-tel',
+          end:'top 100%',
+          // markers:true,
+          scrub:5
+        }
+      }
+    )
+})
+
 </script>
 <template>
     <section class="Gallary-hero">
         <div class="Gallary-hero-shadow">
         </div>
         <div class="container">   
-            <h1>
+            <h1  ref="gallary_title">
                 Gallary
             </h1>
         </div>
@@ -58,7 +120,7 @@ import '@/assets/Style/Home/Contact.css'
     </section>
     <section class="contact">
         <div class="container">
-          <h1>
+          <h1 class="contact-title">
             Bugunoq band qiling!
           </h1>
           <div class="contact-btn">
