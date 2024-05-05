@@ -4,11 +4,18 @@ import messages from '@/locales/messages';
 export function useChangeLanguage() {
   const { locale } = useI18n();
   
-  const changeLanguage = () => {
-    locale.value = locale.value === 'ru' ? 'uz' : 'ru';
+  const changeLanguage = (lang) => {
+    if (lang === 'uz'){
+      locale.value = 'uz'
+    }
+    if (lang === 'ru'){
+      locale.value = 'ru'
+    }
+    if (lang === 'eng'){
+      locale.value = 'eng'
+    }
     localStorage.setItem('Lan', locale.value)
-    // messages.value = { ...messages.value };
-    console.log(locale.value);
+    // console.log(locale.value);
   };
 
   return {

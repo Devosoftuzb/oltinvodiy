@@ -34,7 +34,6 @@ export default {
         const store = reactive({
             categoryAll: false,
             menuAll: false,
-            // pagMenuAll: [],
             menuCategory: [],
             lang: false
         });
@@ -53,28 +52,12 @@ export default {
         };
 
         const category = (id) => {
-            // store.pagMenuAll = []
             store.menuCategory = []
             for (let i in store.menuAll) {
                 if (store.menuAll[i].category_id == id) {
                     store.menuCategory.push(store.menuAll[i])
                 }
             }
-            // let Menu = []
-            // if (store.menuCategory) {
-            //     for (let i in store.menuCategory) {
-            //         Menu.push(store.menuCategory[i])
-            //         if (Menu.length == 3) {
-            //             store.pagMenuAll.push(Menu)
-            //             Menu = []
-            //         }
-            //         if ((Number(i) + 1) == store.menuCategory.length && (store.pagMenuAll.length == 0 || Menu.length > 0)) {
-            //             store.pagMenuAll.push(Menu)
-            //             Menu = []
-            //         }
-            //     }
-            // }
-
         }
 
         const getAllMenu = () => {
@@ -89,18 +72,6 @@ export default {
                         return (x.status === y.status) ? 0 : x.status ? -1 : 1;
                     });
                     store.menuCategory = store.menuAll
-                    // let Menu = []
-                    // for (let i in store.menuAll) {
-                    //     Menu.push(store.menuAll[i])
-                    //     if (Menu.length == 3) {
-                    //         store.pagMenuAll.push(Menu)
-                    //         Menu = []
-                    //     }
-                    //     if ((Number(i) + 1) == store.menuAll.length && (store.pagMenuAll.length == 0 || Menu.length > 0)) {
-                    //         store.pagMenuAll.push(Menu)
-                    //         Menu = []
-                    //     }
-                    // }
                 })
                 .catch((error) => {
                     console.log(error);
