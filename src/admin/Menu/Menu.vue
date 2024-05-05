@@ -40,7 +40,9 @@ const store = reactive({
     pagMenuAll: [],
     pag: 0,
     menuCategory: [],
+    lang: false
 });
+
 const menu = reactive({
     title_uzb: "",
     title_rus: "",
@@ -224,7 +226,7 @@ const category = (id) => {
             }
         }
     }
-    
+
 }
 
 const getAllMenu = () => {
@@ -232,6 +234,7 @@ const getAllMenu = () => {
         .get("/menu/find-all", {
         })
         .then((res) => {
+            store.lang = localStorage.getItem('Lan')
             store.menuAll = res.data
             store.menuAll = store.menuAll.reverse()
             store.menuAll.sort(function (x, y) {
@@ -289,7 +292,10 @@ onMounted(() => {
                 <div class="MenuAdmin-nav">
                     <button @click="category(i.id)" :class="{ active: activeIndex === null }"
                         v-for="i in store.categoryAll" :key="i.id">
-                        {{ i.name_uzb }}
+                        <span v-if="store.lang == 'uz'">{{ i.name_uzb }}</span>
+                        <span v-else-if="store.lang == 'ru'">{{ i.name_rus }}</span>
+                        <span v-else-if="store.lang == 'eng'">{{ i.name_eng }}</span>
+                        <span v-else>{{ i.name_uzb }}</span>
                     </button>
                 </div>
                 <div class="MenuAdmin-table">
@@ -329,12 +335,30 @@ onMounted(() => {
                                     <img :src="CONFIG.API_URL + i.image" alt="foto">
                                 </td>
                                 <td>
-                                    <h3>
+                                    <h3 v-if="store.lang == 'uz'">
+                                        {{ i.title_uzb }}
+                                    </h3>
+                                    <h3 v-else-if="store.lang == 'ru'">
+                                        {{ i.title_rus }}
+                                    </h3>
+                                    <h3 v-else-if="store.lang == 'eng'">
+                                        {{ i.title_eng }}
+                                    </h3>
+                                    <h3 v-else>
                                         {{ i.title_uzb }}
                                     </h3>
                                 </td>
                                 <td>
-                                    <p>
+                                    <p v-if="store.lang == 'uz'">
+                                        {{ i.body_uzb }}
+                                    </p>
+                                    <p v-else-if="store.lang == 'ru'">
+                                        {{ i.body_rus }}
+                                    </p>
+                                    <p v-else-if="store.lang == 'eng'">
+                                        {{ i.body_eng }}
+                                    </p>
+                                    <p v-else>
                                         {{ i.body_uzb }}
                                     </p>
                                 </td>

@@ -27,6 +27,7 @@ const store = reactive({
     categoryAll: false,
     pagCategoryAll: [],
     pag: 0,
+    lang: false
 });
 
 const category = reactive({
@@ -129,6 +130,7 @@ const getAllCategory = () => {
         .get("/category/find-all", {
         })
         .then((res) => {
+            store.lang = localStorage.getItem("Lan")
             store.categoryAll = res.data
             store.categoryAll = store.categoryAll.reverse()
             store.categoryAll.sort(function (x, y) {
@@ -199,7 +201,16 @@ onMounted(() => {
                         <tbody v-for="i in store.pagCategoryAll[store.pag]" :key="i.id">
                             <tr>
                                 <td>
-                                    <h3>
+                                    <h3 v-if="store.lang == 'uz'">
+                                        {{ i.name_uzb }}
+                                    </h3>
+                                    <h3 v-else-if="store.lang == 'ru'">
+                                        {{ i.name_rus }}
+                                    </h3>
+                                    <h3 v-else-if="store.lang == 'eng'">
+                                        {{ i.name_eng }}
+                                    </h3>
+                                    <h3 v-else>
                                         {{ i.name_uzb }}
                                     </h3>
                                 </td>
@@ -289,7 +300,7 @@ onMounted(() => {
                             </label>
                         </div>
                         <button class="submitBtn" type="submit">
-                            cat qoshish
+                            Turkum o`zgartirish
                         </button>
                     </form>
                 </div>
