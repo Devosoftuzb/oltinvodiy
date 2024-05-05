@@ -4,13 +4,10 @@ import '@/assets/Style/Admin/Category.css'
 import { useSidebarStore } from '@/stores/saidbar.js';
 import { ref, reactive, onMounted } from 'vue';
 import axios from '@/services/axios'
-import CONFIG from '../../stores/config'
 
-
-   
 
 const Category = ref(false)
-const oppenCategory = () => (Category.value =!Category.value)
+const oppenCategory = () => (Category.value = !Category.value)
 const openChange = ref(false)
 const openModalChange = () => (openChange.value = !openChange.value)
 const sidebar = useSidebarStore();
@@ -22,25 +19,29 @@ function burger() {
 const activeIndex = ref(null);
 
 const changeBackground = (index) => {
-  activeIndex.value = index;
+    activeIndex.value = index;
 
 };
-
 
 const store = reactive({
     categoryAll: false,
     pagCategoryAll: [],
     pag: 0,
 });
+
 const category = reactive({
-    name_uzb:"",
-    name_rus:"",
+    name_uzb: "",
+    name_rus: "",
+    name_eng: "",
 })
+
 const edit = reactive({
-    id:0,
-    name_uzb:"",
-    name_rus:"",
+    id: 0,
+    name_uzb: "",
+    name_rus: "",
+    name_eng: "",
 })
+
 const deleteCategory = (id) => {
     axios
         .delete(`/category/delete/${id}`, {
@@ -50,20 +51,21 @@ const deleteCategory = (id) => {
         })
         .then((res) => {
             getAllCategory()
-            location.reload()
+            // location.reload()
         })
         .catch((error) => {
             console.log(error);
         });
 }
-const createCategory = () => {
 
+const createCategory = () => {
     const data = {
         name_uzb: category.name_uzb,
         name_rus: category.name_rus,
+        name_eng: category.name_eng
     };
     axios
-        .post("/category/create", data,{
+        .post("/category/create", data, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -71,20 +73,23 @@ const createCategory = () => {
         .then((res) => {
             category.name_uzb = "";
             category.name_rus = "";
+            category.name_eng = "";
             getAllCategory()
-            location.reload()
+            // location.reload()
         })
         .catch((error) => {
             console.log(error);
         });
 }
+
 const getOneCategory = (id) => {
     axios
         .get(`/category/find/${id}`, {
         })
         .then((res) => {
-            edit.name_rus = res.data.name_rus;
+            edit.name_rus = res.data.name_rus
             edit.name_uzb = res.data.name_uzb
+            edit.name_eng = res.data.name_eng
             openChange.value = true;
             edit.id = id
         })
@@ -92,27 +97,31 @@ const getOneCategory = (id) => {
             console.log("error", error);
         });
 };
-const editCategory = ()=>{
+
+const editCategory = () => {
     const data = {
-        name_rus:edit.name_rus,
-        name_uzb:edit.name_uzb,
+        name_rus: edit.name_rus,
+        name_uzb: edit.name_uzb,
+        name_eng: edit.name_eng
     }
     axios
-        .put(`category/update/${edit.id}`, data,{
+        .put(`category/update/${edit.id}`, data, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         })
-        .then((res)=>{
+        .then((res) => {
             edit.name_rus = ""
             edit.name_uzb = ""
+            edit.name_eng = ""
             getAllCategory()
-            location.reload()
+            // location.reload()
         })
         .catch((error) => {
             console.log("error", error);
         });
 }
+
 const getAllCategory = () => {
     axios
         .get("/category/find-all", {
@@ -125,7 +134,7 @@ const getAllCategory = () => {
             });
             let cat = []
             for (let i in store.categoryAll) {
-                    cat.push(store.categoryAll[i])
+                cat.push(store.categoryAll[i])
                 if (cat.length == 3) {
                     store.pagCategoryAll.push(cat)
                     cat = []
@@ -137,19 +146,18 @@ const getAllCategory = () => {
             }
         })
         .catch((error) => {
-            // store.error = true;
             console.log(error);
         });
 };
 
-onMounted(()=>{
-    window.scroll(0,0);
+onMounted(() => {
+    window.scroll(0, 0);
     getAllCategory();
 })
 </script>
 <template>
     <div class="Category">
-        <Saidbar/>
+        <Saidbar />
         <div class="Category-content">
             <div class="header-burger">
                 <button @click="burger">
@@ -186,29 +194,29 @@ onMounted(()=>{
                                 </td>
                             </tr>
                         </thead>
-                         <tbody v-for="i in store.pagCategoryAll[store.pag]" :key="i.id">
+                        <tbody v-for="i in store.pagCategoryAll[store.pag]" :key="i.id">
                             <tr>
                                 <td>
                                     <h3>
                                         {{ i.name_uzb }}
                                     </h3>
                                 </td>
-                                    <td>
-                                        <button class="delete" @click="deleteCategory(i.id)">
-                                            <svg class="delate" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" />
-                                            </svg>
-                                        </button>
-                                        <button @click="getOneCategory(i.id)"  class="edit">
-                                            <svg class="change" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                                viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z" />
-                                            </svg>
-                                        </button>
-                                    </td>
+                                <td>
+                                    <button class="delete" @click="deleteCategory(i.id)">
+                                        <svg class="delate" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z" />
+                                        </svg>
+                                    </button>
+                                    <button @click="getOneCategory(i.id)" class="edit">
+                                        <svg class="change" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z" />
+                                        </svg>
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -216,7 +224,7 @@ onMounted(()=>{
             </div>
             <div class="Category-footer">
                 <div class="Category-footer-wrapper">
-                    <button  @click="store.pag == 0 ? store.pag = store.pagCategoryAll.length - 1  : store.pag -= 1">
+                    <button @click="store.pag == 0 ? store.pag = store.pagCategoryAll.length - 1 : store.pag -= 1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" d="M5 12h14M5 12l6 6m-6-6l6-6" />
@@ -241,8 +249,8 @@ onMounted(()=>{
                     </button>
                 </div>
             </div>
-        </div>        
-        <div  :id="openChange ? 'openChange' : ''" class="modal-change">
+        </div>
+        <div :id="openChange ? 'openChange' : ''" class="modal-change">
             <div class="change-modal">
                 <div class="change-header">
                     <h1>
@@ -255,7 +263,7 @@ onMounted(()=>{
                                 clip-rule="evenodd" />
                         </svg>
                     </button>
-                </div>  
+                </div>
                 <div class="change-main">
                     <form @submit.prevent="editCategory">
                         <div class="form-grid ">
@@ -271,6 +279,12 @@ onMounted(()=>{
                                 </h3>
                                 <input v-model="edit.name_uzb" required id="turuz" type="text">
                             </label>
+                            <label for="tureng">
+                                <h3>
+                                    Nom Eng
+                                </h3>
+                                <input v-model="edit.name_eng" required id="tureng" type="text">
+                            </label>
                         </div>
                         <button class="submitBtn" type="submit">
                             cat qoshish
@@ -279,7 +293,7 @@ onMounted(()=>{
                 </div>
             </div>
         </div>
-        <div class="Category-modal-bg" :class="{'oppen-Category-Modal': Category}">
+        <div class="Category-modal-bg" :class="{ 'oppen-Category-Modal': Category }">
             <div class="Category-modal">
                 <div class="Category-header">
                     <div class="Category-modal-header">
@@ -307,6 +321,12 @@ onMounted(()=>{
                                     Nom Uzb
                                 </h3>
                                 <input v-model="category.name_uzb" required id="turuz" type="text">
+                            </label>
+                            <label for="tureng">
+                                <h3>
+                                    Nom Eng
+                                </h3>
+                                <input v-model="category.name_eng" required id="tureng" type="text">
                             </label>
                         </div>
                         <button class="submitBtn" type="submit">

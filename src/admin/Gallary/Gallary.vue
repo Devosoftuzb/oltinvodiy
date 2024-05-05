@@ -12,14 +12,13 @@ function burger() {
     modal.classList.toggle('db');
 }
 const store = reactive({
-    gallery:false,
+    gallery: false,
     pdf: false
 })
 
 const getImg = ref(null);
 const setImg = (e) => {
     getImg.value = e.target.files[0];
-    console.log(getImg.value.type);           
     const data = {
         image: getImg.value,
     };
@@ -36,9 +35,8 @@ const setImg = (e) => {
             },
         })
         .then((res) => {
-            modal.value = false
             getAllGallery()
-            location.reload()
+            // location.reload()
         })
         .catch((error) => {
             console.log(error);
@@ -55,9 +53,9 @@ const deleteGallery = (id) => {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         })
-    then((res) => {
+    .then((res) => {
         getAllGallery()
-        location.reload()
+        // location.reload()
     })
         .catch((error) => {
             console.log(error);
@@ -71,9 +69,9 @@ const getAllGallery = () => {
         })
         .then((res) => {
             store.gallery = res.data
-            for(let i in store.gallery){
+            for (let i in store.gallery) {
                 const lastThreeChars = store.gallery[i].image.substring(store.gallery[i].image.length - 3);
-                if(lastThreeChars == 'pdf'){
+                if (lastThreeChars == 'pdf') {
                     store.pdf = store.gallery[i].image
                     console.log(store.pdf);
                 }
@@ -115,8 +113,11 @@ onMounted(() => {
                     </div>
                     <div class="GallaryAdmin-wrapper-card" v-for="i in store.gallery" :key="i.id">
                         <div class="gallary_bg">
-                            <button>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zm2-4h2V8H9zm4 0h2V8h-2z"/></svg>
+                            <button @click="deleteGallery(i.id)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zm2-4h2V8H9zm4 0h2V8h-2z" />
+                                </svg>
                             </button>
                         </div>
                         <img :src="CONFIG.API_URL + i.image" alt="">

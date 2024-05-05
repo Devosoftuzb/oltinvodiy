@@ -45,8 +45,10 @@ const store = reactive({
 const menu = reactive({
     title_uzb: "",
     title_rus: "",
+    title_eng: "",
     body_uzb: "",
     body_rus: "",
+    body_eng: "",
     price: "",
     category_id: 0,
 })
@@ -54,8 +56,10 @@ const edit = reactive({
     id: 0,
     title_uzb: "",
     title_rus: "",
+    title_eng: "",
     body_uzb: "",
     body_rus: "",
+    body_eng: "",
     price: "",
 });
 
@@ -68,7 +72,7 @@ const deleteMenu = (id) => {
         })
         .then((res) => {
             getAllMenu()
-            location.reload()
+            // location.reload()
         })
         .catch((error) => {
             console.log(error);
@@ -83,8 +87,10 @@ const getOneMenu = (id) => {
             getImg.value = res.data.image
             edit.title_uzb = res.data.title_uzb;
             edit.title_rus = res.data.title_rus
+            edit.title_eng = res.data.title_eng
             edit.body_uzb = res.data.body_uzb
             edit.body_rus = res.data.body_rus
+            edit.body_eng = res.data.body_eng
             edit.price = res.data.price
             edit.category_id = res.data.category_id
             edit.id = id
@@ -105,11 +111,12 @@ const editmenu = () => {
         image: getImg.value,
         title_uzb: edit.title_uzb,
         title_rus: edit.title_rus,
+        title_eng: edit.title_eng,
         body_uzb: edit.body_uzb,
         body_rus: edit.body_rus,
+        body_eng: edit.body_eng,
         price: edit.price,
         category_id: edit.category_id
-        // category_id:edit.category_id
     };
 
     const formData = new FormData();
@@ -126,11 +133,13 @@ const editmenu = () => {
         .then((res) => {
             edit.title_uzb = ""
             edit.title_rus = ""
+            edit.title_eng = ""
             edit.body_uzb = ""
             edit.body_rus = ""
+            edit.body_eng = ""
             edit.price = ""
             getAllMenu()
-            location.reload()
+            // location.reload()
         })
         .catch((error) => {
             console.log("error", error);
@@ -149,8 +158,10 @@ const createMenu = () => {
         image: getImg.value,
         title_uzb: menu.title_uzb,
         title_rus: menu.title_rus,
+        title_eng: menu.title_eng,
         body_uzb: menu.body_uzb,
         body_rus: menu.body_rus,
+        body_eng: menu.body_eng,
         price: menu.price,
         category_id: menu.category_id
     };
@@ -170,12 +181,14 @@ const createMenu = () => {
         .then((res) => {
             menu.title_uzb = "";
             menu.title_rus = "";
+            menu.title_eng = "";
             menu.body_uzb = "";
             menu.body_rus = "";
+            menu.body_eng = "";
             menu.price = String("");
             modal.value = false
             getAllMenu()
-            location.reload()
+            // location.reload()
         })
         .catch((error) => {
             console.log(error);
@@ -192,10 +205,10 @@ const getAllCategory = () => {
             let cat = []
         })
         .catch((error) => {
-            // store.error = true;
             console.log(error);
         });
 };
+
 const category = (id) => {
     store.pagMenuAll = []
     store.menuCategory = []
@@ -220,6 +233,7 @@ const category = (id) => {
     }
     
 }
+
 const getAllMenu = () => {
     axios
         .get("/menu/find-all", {
@@ -244,7 +258,6 @@ const getAllMenu = () => {
             }
         })
         .catch((error) => {
-            // store.error = true;
             console.log(error);
         });
 };
