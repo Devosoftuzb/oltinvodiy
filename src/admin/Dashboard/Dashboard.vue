@@ -20,21 +20,22 @@ const NumberOfElements = reactive({
     gallery:0,
 })
 
-const getAll = () =>{
+const getMenu = () =>{
     axios
         .get("/menu/find-all",{
 
         })
         .then((res)=>{
             NumberOfElements.menu = res.data.length
-            // console.log(res.data);
         })
         .catch((error)=>{
             console.log(error);
         })
+}
+
+const getGallery = () =>{
     axios
         .get("/gallery/find-all",{
-
         })
         .then((res)=>{
             NumberOfElements.gallery = res.data.length
@@ -42,9 +43,14 @@ const getAll = () =>{
         .catch((error)=>{
             console.log(error);
         })
+}
+
+const getContact = () =>{
     axios
         .get('/contact/find-all',{
-
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
         })
         .then((res)=>{
             NumberOfElements.contact = res.data.length
@@ -53,8 +59,11 @@ const getAll = () =>{
             console.log(error);
         })
 }
+
 onMounted(() => {
-    getAll();
+    getMenu();
+    getGallery()
+    getContact()
 });
 </script>
 <template>
@@ -82,7 +91,7 @@ onMounted(() => {
                                 Gallary rasmlar 
                             </h3>
                             <span>
-                                {{NumberOfElements.gallary}}
+                                {{NumberOfElements.gallery}}
                             </span>
                         </div>
                         <router-link class="dashboard-card-btn" to="/AdminGallary">

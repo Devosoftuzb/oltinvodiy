@@ -28,7 +28,6 @@ const changeBackground = (index) => {
 
 };
 
-
 const getImg = ref(null);
 const setImg = (e) => {
     getImg.value = e.target.files[0];
@@ -72,7 +71,7 @@ const deleteMenu = (id) => {
         })
         .then((res) => {
             getAllMenu()
-            // location.reload()
+            location.reload()
         })
         .catch((error) => {
             console.log(error);
@@ -138,8 +137,9 @@ const editmenu = () => {
             edit.body_rus = ""
             edit.body_eng = ""
             edit.price = ""
+            openChange.value = false
             getAllMenu()
-            // location.reload()
+            location.reload()
         })
         .catch((error) => {
             console.log("error", error);
@@ -147,13 +147,6 @@ const editmenu = () => {
 };
 
 const createMenu = () => {
-    for (let i in store.categoryAll) {
-        if (store.categoryAll[i].name_uzb == menu.category_id) {
-            menu.category_id = store.categoryAll[i].id
-        }
-    }
-    console.log(menu.category_id);
-
     const data = {
         image: getImg.value,
         title_uzb: menu.title_uzb,
@@ -188,7 +181,7 @@ const createMenu = () => {
             menu.price = String("");
             modal.value = false
             getAllMenu()
-            // location.reload()
+            location.reload()
         })
         .catch((error) => {
             console.log(error);
@@ -416,17 +409,23 @@ onMounted(() => {
                 <div class="create-modal-main">
                     <form @submit.prevent="createMenu">
                         <div class="form-grid form-name">
-                            <label for="fio">
+                            <label for="fioru">
                                 <h3>
                                     Nom Russ
                                 </h3>
-                                <input v-model="menu.title_rus" required id="fio" type="text">
+                                <input v-model="menu.title_rus" required id="fioru" type="text">
                             </label>
-                            <label for="fio">
+                            <label for="fiouz">
                                 <h3>
                                     Nom Uzb
                                 </h3>
-                                <input v-model="menu.title_uzb" required id="fio" type="text">
+                                <input v-model="menu.title_uzb" required id="fiouz" type="text">
+                            </label>
+                            <label for="fioeng">
+                                <h3>
+                                    Nom Eng
+                                </h3>
+                                <input v-model="menu.title_eng" required id="fioeng" type="text">
                             </label>
                         </div>
                         <div class="form-grid">
@@ -463,10 +462,17 @@ onMounted(() => {
                                 <textarea v-model="menu.body_uzb" class="menu-info" name="" id="textuzb" cols=""
                                     rows=""></textarea>
                             </label>
+                            <label for="texteng">
+                                <h3>
+                                    Malumot Eng
+                                </h3>
+                                <textarea v-model="menu.body_eng" class="menu-info" name="" id="texteng" cols=""
+                                    rows=""></textarea>
+                            </label>
                         </div>
                         <div class="modal-footer">
                             <select v-model="menu.category_id">
-                                <option value="Name" v-for="i in store.categoryAll" :key="i.id">
+                                <option :value="i.id" v-for="i in store.categoryAll" :key="i.id">
                                     {{ i.name_uzb }}
                                 </option>
                             </select>
@@ -496,17 +502,23 @@ onMounted(() => {
                 <div class="change-main">
                     <form @submit.prevent="editmenu">
                         <div class="form-grid form-name">
-                            <label for="fio">
+                            <label for="fioru">
                                 <h3>
                                     Nom Russ
                                 </h3>
-                                <input v-model="edit.title_rus" required id="fio" type="text">
+                                <input v-model="edit.title_rus" required id="fioru" type="text">
                             </label>
-                            <label for="fio">
+                            <label for="fiouz">
                                 <h3>
                                     Nom Uzb
                                 </h3>
-                                <input v-model="edit.title_uzb" required id="fio" type="text">
+                                <input v-model="edit.title_uzb" required id="fiouz" type="text">
+                            </label>
+                            <label for="fioeng">
+                                <h3>
+                                    Nom Eng
+                                </h3>
+                                <input v-model="edit.title_eng" required id="fioeng" type="text">
                             </label>
                         </div>
                         <div class="form-grid">
@@ -524,7 +536,7 @@ onMounted(() => {
                                     <span>
                                         Rasm tanglang
                                     </span>
-                                    <input required @change="(e) => setImg(e)" type="file">
+                                    <input @change="(e) => setImg(e)" type="file">
                                 </label>
                             </div>
                         </div>
@@ -541,6 +553,13 @@ onMounted(() => {
                                     Malumot Uzb
                                 </h3>
                                 <textarea v-model="edit.body_uzb" class="menu-info" name="" id="textuzb" cols=""
+                                    rows=""></textarea>
+                            </label>
+                            <label for="texteng">
+                                <h3>
+                                    Malumot Eng
+                                </h3>
+                                <textarea v-model="edit.body_eng" class="menu-info" name="" id="texteng" cols=""
                                     rows=""></textarea>
                             </label>
                         </div>

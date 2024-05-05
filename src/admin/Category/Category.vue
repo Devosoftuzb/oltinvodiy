@@ -51,7 +51,7 @@ const deleteCategory = (id) => {
         })
         .then((res) => {
             getAllCategory()
-            // location.reload()
+            location.reload()
         })
         .catch((error) => {
             console.log(error);
@@ -74,8 +74,9 @@ const createCategory = () => {
             category.name_uzb = "";
             category.name_rus = "";
             category.name_eng = "";
+            Category.value = false
             getAllCategory()
-            // location.reload()
+            location.reload()
         })
         .catch((error) => {
             console.log(error);
@@ -114,8 +115,9 @@ const editCategory = () => {
             edit.name_rus = ""
             edit.name_uzb = ""
             edit.name_eng = ""
+            openChange.value = false
             getAllCategory()
-            // location.reload()
+            location.reload()
         })
         .catch((error) => {
             console.log("error", error);

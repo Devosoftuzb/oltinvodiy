@@ -36,13 +36,12 @@ const setImg = (e) => {
         })
         .then((res) => {
             getAllGallery()
-            // location.reload()
+            location.reload()
         })
         .catch((error) => {
             console.log(error);
         })
 };
-
 
 
 
@@ -55,7 +54,7 @@ const deleteGallery = (id) => {
         })
     .then((res) => {
         getAllGallery()
-        // location.reload()
+        location.reload()
     })
         .catch((error) => {
             console.log(error);
