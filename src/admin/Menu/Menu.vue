@@ -443,7 +443,7 @@ onMounted(() => {
                                     <span>
                                         Rasm tanglang
                                     </span>
-                                    <input @change="(e) => setImg(e)" type="file">
+                                    <input @change="(e) => setImg(e)" accept="image/*" type="file">
                                 </label>
                             </div>
                         </div>
@@ -536,7 +536,7 @@ onMounted(() => {
                                     <span>
                                         Rasm tanglang
                                     </span>
-                                    <input @change="(e) => setImg(e)" type="file">
+                                    <input @change="(e) => setImg(e)" accept="image/*" type="file">
                                 </label>
                             </div>
                         </div>

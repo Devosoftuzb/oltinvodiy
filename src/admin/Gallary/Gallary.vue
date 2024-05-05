@@ -12,8 +12,7 @@ function burger() {
     modal.classList.toggle('db');
 }
 const store = reactive({
-    gallery: false,
-    pdf: false
+    gallery: false
 })
 
 const getImg = ref(null);
@@ -68,13 +67,6 @@ const getAllGallery = () => {
         })
         .then((res) => {
             store.gallery = res.data
-            for (let i in store.gallery) {
-                const lastThreeChars = store.gallery[i].image.substring(store.gallery[i].image.length - 3);
-                if (lastThreeChars == 'pdf') {
-                    store.pdf = store.gallery[i].image
-                    console.log(store.pdf);
-                }
-            }
         })
         .catch((error) => {
             console.log(error);
@@ -104,7 +96,7 @@ onMounted(() => {
             <div class="GallaryAdmin-main">
                 <div class="GallaryAdmin-wrapper">
                     <div class="file-upload">
-                        <input @change="(e) => setImg(e)" type="file" id="fileInput">
+                        <input @change="(e) => setImg(e)" accept="image/*" type="file" id="fileInput">
                         <label for="fileInput" class="file-label">
                             <div class="file-icon">+</div>
                             <h3 class="file-text">Faylni tanlang</h3>
