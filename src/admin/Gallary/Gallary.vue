@@ -75,6 +75,12 @@ const getAllGallery = () => {
 onMounted(() => {
     getAllGallery();
 });
+import { useChangeLanguage } from '@/stores/language';
+const { changeLanguage } = useChangeLanguage();
+const changeLanguages = (lang) => {
+    changeLanguage(lang);
+    location.reload()
+};
 </script>
 <template>
     <div class="GallaryAdmin">
@@ -92,6 +98,20 @@ onMounted(() => {
                 <h1>
                     Gallary
                 </h1>
+                <div class="addropdown">
+                    <button class="addropbtn">Language</button>
+                    <div class="addropdown-content">
+                        <button @click="changeLanguages('uz')">
+                            Uz
+                        </button>
+                        <button @click="changeLanguages('ru')">
+                            Ru
+                        </button>
+                        <button @click="changeLanguages('eng')">
+                            Eng
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="GallaryAdmin-main">
                 <div class="GallaryAdmin-wrapper">

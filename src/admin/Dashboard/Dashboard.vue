@@ -5,7 +5,6 @@ import { useSidebarStore } from '@/stores/saidbar.js';
 import { reactive, onMounted } from 'vue'
 import axios from "../../services/axios";
 
-
 const sidebar = useSidebarStore();
 function burger() {
     sidebar.sidebar = !sidebar.sidebar
@@ -65,6 +64,12 @@ onMounted(() => {
     getGallery()
     getContact()
 });
+import { useChangeLanguage } from '@/stores/language';
+const { changeLanguage } = useChangeLanguage();
+const changeLanguages = (lang) => {
+    changeLanguage(lang);
+    location.reload()
+};
 </script>
 <template>
     <div class="Dashboard">
@@ -82,6 +87,20 @@ onMounted(() => {
                 <h1>
                     Bosh panel
                 </h1>
+                <div class="addropdown">
+                    <button class="addropbtn">Language</button>
+                    <div class="addropdown-content">
+                        <button @click="changeLanguages('uz')">
+                            Uz
+                        </button>
+                        <button @click="changeLanguages('ru')">
+                            Ru
+                        </button>
+                        <button @click="changeLanguages('eng')">
+                            Eng
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="Dashboard-main">
                 <div class=" Dashboard-wrapper">

@@ -354,7 +354,7 @@ onMounted(() => {
         </div>
         <div class="container About-hero-wrapper">
             <h1 ref="about__title_ref">
-                Biz Haqimizda
+              {{ $t('AboutUs_title') }}
             </h1>
         </div>
     </section>
@@ -363,20 +363,19 @@ onMounted(() => {
             <div class="About-corparation-wrapper">
                 <div class="About-corparation-content">
                     <h1 class="About-cor-title">
-                        <Span>Oltin</Span> Vodiy Haqida
+                        <Span>Oltin</Span> Vodiy
                     </h1>
                     <p class="About-car-text1">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum aliquam aut dolorem doloremque magni optio fugit eligendi atque voluptates voluptas?
+                      {{ $t('AboutUs_text1') }}
                     </p>
                     <p class="About-car-text2">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi quidem, odit, veritatis omnis numquam nostrum et iure minus ullam inventore tempora dolorum voluptate accusamus! Aliquam sit a sint dolorum dolor.
+                      {{ $t('AboutUs_text2') }}
                     </p>
                     <p class="About-car-text3">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse blanditiis iure recusandae sint tempora assumenda cumque hic doloribus quis aspernatur placeat, fa
+                      {{ $t('AboutUs_text3') }}
                     </p>
                     <p class="About-car-text5">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, aperiam cupiditate! Perspiciatis voluptas doloremque ad nihil optio suscipit beatae voluptates.
-
+                      {{ $t('AboutUs_text4') }}
                     </p>
                 </div>
                 <div class="About-corparation-foto">
@@ -395,18 +394,18 @@ onMounted(() => {
                 <div class="About-mission-content">
                     <div class="About-mission-content-card">
                         <h2 class="about-mission-title">
-                            Vazifamiz
+                          {{ $t('AboutUs_mission_title') }}
                         </h2>
                         <p class="about-mission-text">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, inventore quisquam similique quo recusandae perspiciatis. 
+                          {{ $t('AboutUs_mission_text') }}
                         </p>
                     </div>
                     <div class="About-mission-content-card">
                         <h2 class="about-mission-con-title">
-                            Maqsad
+                          {{ $t('AboutUs_vision_title') }}
                         </h2>
                         <p class="about-mission-con-text">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, inventore quisquam similique quo recusandae perspiciatis. 
+                          {{ $t('AboutUs_vision_text') }}
                         </p>
                     </div>
                 </div>
@@ -449,18 +448,18 @@ onMounted(() => {
         </div>
     </section>
     <section class="contact">
-        <div class="container">
-          <h1 class="contact-title">
-            Bugunoq band qiling!
-          </h1>
-          <div class="contact-btn">
-            <router-link  to="/Contact" class="contact-btn-item">
-               Bog`lanish
-            </router-link>
-            <a class="contact-btn-tel" href="tel:+981100632">
-               Bron qilish
-            </a>
-          </div>
+      <div class="container">
+        <h1 class="contact-title">
+          {{ $t('Contact_title') }}
+        </h1>
+        <div class="contact-btn">
+          <router-link  to="/Contact" class="contact-btn-item">
+            {{ $t('Contact_btn') }}
+          </router-link>
+          <a class="contact-btn-tel" href="tel:+981100632">
+            {{ $t('Contact_btn2') }}
+          </a>
         </div>
-      </section>
+      </div>
+    </section>
 </template>

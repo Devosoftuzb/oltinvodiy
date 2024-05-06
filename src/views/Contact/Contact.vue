@@ -47,7 +47,7 @@ const createContact = () => {
         </div>
         <div class="container">   
             <h1 ref="con__title">
-                Bog`lanish
+                {{ $t('ContactPg_title') }}
             </h1>
         </div>
     </section>
@@ -56,7 +56,7 @@ const createContact = () => {
             <div class="Contact-form-wrapper">
                 <form @submit.prevent="createContact">  
                     <h2>
-                        O`z fikiringizdi qoldiring 
+                        {{ $t('Contact_comment') }}
                     </h2>
                     <label for="name">
                         <input v-model="contact.phone" class="Con-name" type="text" id="name" placeholder="Ismingiz">
@@ -65,12 +65,12 @@ const createContact = () => {
                         <textarea v-model="contact.info" placeholder="Fikiringizdi yozing" name="" id="info" cols="30" rows="10"></textarea>
                     </label>
                     <button class="form-btn" type="submit">
-                        Yuborish
+                        {{ $t('Contact_submit') }}
                     </button>
                 </form>
                 <div class="Contact-media">
                     <h2>
-                        Bizning ijtimoiy tarmoqlarimiz
+                        {{ $t('Contact_comment2') }}
                     </h2>
                         <h3>
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7"/></svg>

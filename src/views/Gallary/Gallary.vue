@@ -122,7 +122,7 @@ onMounted(() => {
     </div>
     <div class="container">
       <h1 ref="gallary_title">
-        Gallary
+        {{ $t('Gallary_title') }}
       </h1>
     </div>
   </section>
@@ -176,14 +176,14 @@ onMounted(() => {
   <section class="contact">
     <div class="container">
       <h1 class="contact-title">
-        Bugunoq band qiling!
+        {{ $t('Contact_title') }}
       </h1>
       <div class="contact-btn">
-        <router-link to="/Contact" class="contact-btn-item">
-          Bog`lanish
+        <router-link  to="/Contact" class="contact-btn-item">
+          {{ $t('Contact_btn') }}
         </router-link>
         <a class="contact-btn-tel" href="tel:+981100632">
-          Bron qilish
+          {{ $t('Contact_btn2') }}
         </a>
       </div>
     </div>

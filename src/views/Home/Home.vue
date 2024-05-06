@@ -322,7 +322,7 @@ onMounted(() => {
               </router-link>
             </div>
           <span>
-            Watch now
+            {{ $t('Home_hero_time') }}
           </span>
         </div>
       </div>
@@ -331,16 +331,16 @@ onMounted(() => {
       <div class="container aboutUs-wrapper">
           <div class="aboutUs-content">
             <h1 class="box" ref="boxRef">
-              Biz Haqimizda
+              {{ $t('Home_aboutUs_title') }}
             </h1>
             <p class="aboutUs-content-p1">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos debitis, atque ullam porro tempora illo non, sunt quidem quisquam accusamus vero? Dolorem aliquid voluptatibus, consectetur ea aperiam exercitationem at fuga.
+              {{ $t('Home_aboutUs_text') }}
             </p>
             <p class="aboutUs-content-p2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos debitis, atque ullam porro tempora illo non, sunt quidem quisquam accusamu
+              {{ $t('Home_aboutUs_text2') }}
             </p>
             <router-link  to="/AboutUs" class="AboutUs-btn">
-              Ko'proq
+              {{ $t('Home_btn') }}
             </router-link>
           </div>
       </div>
@@ -349,24 +349,22 @@ onMounted(() => {
       <div class="container Gallary_wrapper">
         <div>
           <h1 class="Gallary-title">
-            Gallary
+            {{ $t('Home_gallary') }}
           </h1>
           <div class="Gallary-wrapper">
             <div class="Gallary-content">
               <h2 class="Gallary-title">
-                Gallary
+                {{ $t('Home_gallary') }}
               </h2>
               <p class="Gallary-text1">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis ipsum accusantium cupiditate neque rerum porro maiores expedita minima dicta officia?
+                {{ $t('Home_gallary_text') }}
               </p>
               <p class="Gallary-text2"> 
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum dignissimos inventore recusandae velit omnis magni deleniti ipsa ut qui doloremque.
+                {{ $t('Home_gallary_text2') }}
               </p>
-              <p class="Gallary-text3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus possimus quidem architecto atque voluptatem distinctio dolorem repellat, libero voluptatum at?
-              </p>
+
               <router-link  to="/Gallary" class="Gallary-btn">
-                Ko'proq
+                {{ $t('Home_btn') }}
               </router-link>
             </div>
             <div class="Home-Gallary-foto">
@@ -384,16 +382,16 @@ onMounted(() => {
           </div>
           <div class="Menu-content">
             <h2 class="Menu-content-title">
-              Menyu
+              {{ $t('Home_gallary_title') }}
             </h2>
             <p class="menu-text1">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Id facilis, eum minima magnam, debitis distinctio quo consequuntur non nam consequatur labore. Veritatis voluptas, dolores repellat debitis totam unde illum vero?
+              {{ $t('Home_gallary_text') }}
             </p>
             <p class="menu-text2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam rerum labore soluta quis odit recusandae doloremque quia adipisci facere error!
+              {{ $t('Home_gallary_text2') }}
             </p>
             <router-link  to="/Menu" class="Menu-btn">
-              To'liq menyu
+              {{ $t('Home_gallary_btn') }}
             </router-link>
           </div>
           <div class="Menu-foto-right">
@@ -405,14 +403,14 @@ onMounted(() => {
     <section class="contact">
       <div class="container">
         <h1 class="contact-title">
-          Bugunoq band qiling!
+          {{ $t('Contact_title') }}
         </h1>
         <div class="contact-btn">
           <router-link  to="/Contact" class="contact-btn-item">
-             Bog`lanish
+            {{ $t('Contact_btn') }}
           </router-link>
           <a class="contact-btn-tel" href="tel:+981100632">
-             Bron qilish
+            {{ $t('Contact_btn2') }}
           </a>
         </div>
       </div>

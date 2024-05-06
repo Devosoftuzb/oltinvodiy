@@ -1,4 +1,4 @@
-<script>
+ <script>
 import '@/assets/Style/Menu/Hero.css'
 import '@/assets/Style/Menu/Menu.css'
 import 'swiper/css';
@@ -110,7 +110,7 @@ export default {
 
             </div>
             <h1 ref="Menu_title">
-                Menuy
+                {{ $t('Menu_title1') }}
             </h1>
         </div>
     </section>
@@ -167,6 +167,18 @@ export default {
                         </div>
                     </swiper-slide>
                 </swiper>
+            </div>
+        </div>
+    </section>
+    <section class="All-Menu">
+        <div class="container">
+            <h1 class="All-Menu-title">
+                {{ $t('Menu_title2') }}
+            </h1>
+            <div class="All-menu-wrapper">
+                <a href="!#" target="_blank" rel="noopener noreferrer">
+                    {{ $t('Menu_btn2') }}
+                </a>
             </div>
         </div>
     </section>

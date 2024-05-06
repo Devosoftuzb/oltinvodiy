@@ -281,7 +281,7 @@ onMounted(() => {
             <div class="MenuAdmin-header">
                 <div class="MenuAdmin-header-wrapper">
                     <h1>
-                        Menu
+                        
                     </h1>
                     <button @click="oppenModal" class="MenuAdmin-header-btn">
                         Qo'shish
