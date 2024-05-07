@@ -8,10 +8,12 @@ import '@/assets/Style/Error.css'
                 404
             </h1>
             <h2>
-                Nimadir noto'g'ri bajarildi
+                
+                {{ $t('Erorr_title') }}
             </h2>
             <router-link  to="/" class="Error-btn">
-                Orqaga  qaytish
+                
+                {{ $t('Erorr_btn') }}
             </router-link>
         </div>
     </dir>

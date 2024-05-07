@@ -2,6 +2,7 @@
 padding-bottom: 100px;
 }
 .About-boss h1{
+    text-align: center;
     color: #dca26b;
     font-size: 45px;
     font-weight: normal;
@@ -27,7 +28,11 @@ padding-bottom: 100px;
 }
 .About-boss-wrapper{
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+}
+.About-boss-content{
+    text-align: center;
 }
 @media(max-width:1160px){
     .About-boss-content p{

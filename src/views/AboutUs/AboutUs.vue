@@ -347,6 +347,14 @@ onMounted(() => {
     )
 
   })
+  const closeModal = ref(false)
+const closeMenu = () => {
+    (closeModal.value = !closeModal.value)
+    window.scrollTo(0, 0);
+}
+const ScTop = () => {
+    window.scrollTo(0, 0);
+}
 </script>
 <template>  
     <section class="About-hero">
@@ -415,34 +423,19 @@ onMounted(() => {
     <section class="About-boss">
         <div class="container">
             <h1 class="about-boss-title">
-                Bizning xo'jayinimiz bilan tanishing
+              {{ $t('Cheff_title') }}
             </h1>
             <div class="About-boss-wrapper">
                 <div class="About-boss-content">
-                    <p class="About-boss-text1">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut vel inventore quis dolores dolor incidunt libero aliquam aliquid soluta? Provident?
-                    </p>
                     <p class="About-boss-text2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut illum fugiat mollitia, sed nisi perferendis repellat eligendi repellendus voluptates a quibusdam neque unde reprehenderit molestias! Ratione eaque rerum accusantium nesciunt.
+                      {{ $t('Cheff_text2') }}
                     </p>
                     <p class="About-boss-text3">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti vel illo ab deleniti facilis enim tempore sint dolorum dolorem nostrum?
+                      {{ $t('Cheff_text3') }}
                     </p>
                     <p class="About-boss-text4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut illum fugiat mollitia, sed nisi perferendis repellat eligendi repellendus voluptates a quibusdam neque unde reprehenderit molestias! Ratione eaque rerum accusantium nesciunt.
+                      {{ $t('Cheff_text4') }}
                     </p>
-                    <p class="About-boss-text5">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti vel illo ab deleniti facilis enim tempore sint dolorum dolorem nostrum?
-                    </p>
-                    <p class="About-boss-text6">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut illum fugiat mollitia, sed nisi perferendis repellat eligendi repellendus voluptates a quibusdam neque unde reprehenderit molestias! Ratione eaque rerum accusantium nesciunt.
-                    </p>
-                    <p class="About-boss-text7">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti vel illo ab deleniti facilis enim tempore sint dolorum dolorem nostrum?
-                    </p>
-                </div>
-                <div class="About-boss-foto">
-                    <img class="About-boss-foto-img" src="https://frndsdubai.com/wp-content/uploads/2023/02/WhatsApp_Image_2023-02-17_at_14.25.08.jpeg.jpg" alt="foto">
                 </div>
             </div>
         </div>
@@ -453,7 +446,7 @@ onMounted(() => {
           {{ $t('Contact_title') }}
         </h1>
         <div class="contact-btn">
-          <router-link  to="/Contact" class="contact-btn-item">
+          <router-link @click="closeMenu"  to="/Contact" class="contact-btn-item">
             {{ $t('Contact_btn') }}
           </router-link>
           <a class="contact-btn-tel" href="tel:+981100632">

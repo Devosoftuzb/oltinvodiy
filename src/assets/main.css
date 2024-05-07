@@ -41,13 +41,17 @@ a{
 .addropbtn {
     background-color: #1A0A0A;
     color:#D0B08B;
-    padding: 16px;
+    padding:11px 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
     border-radius: 30px;
+    border:2px solid #1A0A0A;
   }
-  
+  .addropbtn:hover{
+    background-color: transparent;
+    color: #1A0A0A;
+  }
   /* The container <div> - needed to position the dropdown content */
   .addropdown {
     margin-top: 5px;
@@ -74,7 +78,10 @@ a{
   }
   
   /* Change color of dropdown links on hover */
-  .addropdown-content a:hover {background-color: #D0B08B}
+  .addropdown-content button:hover {
+    background-color: #1A0A0A;
+    color: #D0B08B;
+  }
   
   /* Show the dropdown menu on hover */
   .addropdown:hover .addropdown-content {

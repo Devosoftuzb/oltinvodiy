@@ -76,6 +76,12 @@ const getPdf = () => {
 onMounted(() => {
     getPdf();
 })
+import { useChangeLanguage } from '@/stores/language';
+const { changeLanguage } = useChangeLanguage();
+const changeLanguages = (lang) => {
+    changeLanguage(lang);
+    location.reload()
+};
 </script>
 <template>
     <div class="PdfAdmin">
@@ -91,8 +97,22 @@ onMounted(() => {
                     </button>
                 </div>
                 <h1>
-                    Menu Pdf
+                    {{ $t('Menu_pdf_title') }}
                 </h1>
+                <div class="addropdown">
+                    <button class="addropbtn">Language</button>
+                    <div class="addropdown-content">
+                        <button @click="changeLanguages('uz')">
+                            Uz
+                        </button>
+                        <button @click="changeLanguages('ru')">
+                            Ru
+                        </button>
+                        <button @click="changeLanguages('eng')">
+                            Eng
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="PdfAdmin-main">
                 <div class="PdfAdmin-wrapper">
@@ -118,7 +138,8 @@ onMounted(() => {
                             </button>
                         </div>
                         <h1>
-                            File yuklangan <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                            {{ $t('Menu_pdf_span') }}
+                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                 viewBox="0 0 24 24">
                                 <path fill="currentColor"
                                     d="M13 9V3.5L18.5 9M6 2c-1.11 0-2 .89-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />

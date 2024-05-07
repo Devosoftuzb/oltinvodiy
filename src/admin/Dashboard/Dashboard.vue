@@ -13,10 +13,12 @@ function burger() {
 
 
 const NumberOfElements = reactive({
+    category:0,
     menu:0,
     category:0,
     contact:0,
     gallery:0,
+    menupdf:0,
 })
 
 const getMenu = () =>{
@@ -58,8 +60,32 @@ const getContact = () =>{
             console.log(error);
         })
 }
+const getAllCategory = () => {
+    axios
+        .get("/category/find-all", {
+        })
+        .then((res) => {
+            NumberOfElements.category = res.data.length
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
+const getPdf = () => {
+    axios
+        .get("/pdf-menu/find-all", {
 
+        })
+        .then((res) => {
+            NumberOfElements.menupdf = res.data.length
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
 onMounted(() => {
+    getPdf()
+    getAllCategory()
     getMenu();
     getGallery()
     getContact()
@@ -85,7 +111,7 @@ const changeLanguages = (lang) => {
             </div>
             <div class="Dashboard-header">
                 <h1>
-                    Bosh panel
+                    {{ $t('Dashboard_title') }}
                 </h1>
                 <div class="addropdown">
                     <button class="addropbtn">Language</button>
@@ -107,39 +133,65 @@ const changeLanguages = (lang) => {
                     <div class="dashboard-card">
                         <div class="dashboard-card-grid">
                             <h3>
-                                Gallary rasmlar 
+                                {{ $t('Gallaru_num') }}
                             </h3>
                             <span>
                                 {{NumberOfElements.gallery}}
                             </span>
                         </div>
-                        <router-link class="dashboard-card-btn" to="/AdminGallary">
+                        <router-link class="dashboard-card-btn" to="/GallaryAdmin">
                             O`tish <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16m0 0l-6-6m6 6l-6 6"/></svg>
                         </router-link>
                     </div>
                     <div class="dashboard-card">
                         <div class="dashboard-card-grid">
                             <h3>
-                                Menu
+                                {{ $t('Menu_title1') }}
                             </h3>
                             <span>
                                 {{NumberOfElements.menu}}
                             </span>
                         </div>
-                        <router-link class="dashboard-card-btn" to="/AdminGallary">
+                        <router-link class="dashboard-card-btn" to="/MenuAdmin">
                             O`tish <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16m0 0l-6-6m6 6l-6 6"/></svg>
                         </router-link>
                     </div>
                     <div class="dashboard-card">
                         <div class="dashboard-card-grid">
                             <h3>
-                                Habarlar 
+                                {{ $t('Menu_pdf_num') }}
+                            </h3>
+                            <span>
+                                {{ NumberOfElements.menupdf }}
+                            </span>
+                        </div>
+                        <router-link class="dashboard-card-btn" to="/MenuPDF">
+                            O`tish <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16m0 0l-6-6m6 6l-6 6"/></svg>
+                        </router-link>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-grid">
+                            <h3>
+                                {{ $t('Category_num') }}
+                            </h3>
+                            <span>
+                                {{ NumberOfElements.category }}
+                            </span>
+                        </div>
+                        <router-link class="dashboard-card-btn" to="/CategoryAdmin">
+                            O`tish <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16m0 0l-6-6m6 6l-6 6"/></svg>
+                        </router-link>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-grid">
+                            <h3>
+                                {{ $t('Contact_num') }}
                             </h3>
                             <span>
                                 {{ NumberOfElements.contact }}
                             </span>
                         </div>
-                        <router-link class="dashboard-card-btn" to="/AdminGallary">
+                        <router-link class="dashboard-card-btn" to="/HabarlarAdmin">
                             O`tish <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16m0 0l-6-6m6 6l-6 6"/></svg>
                         </router-link>
                     </div>

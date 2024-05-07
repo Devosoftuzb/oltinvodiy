@@ -96,7 +96,7 @@ const changeLanguages = (lang) => {
                     </button>
                 </div>
                 <h1>
-                    Gallary
+                    {{ $t('Gallary_title') }}
                 </h1>
                 <div class="addropdown">
                     <button class="addropbtn">Language</button>
@@ -119,7 +119,7 @@ const changeLanguages = (lang) => {
                         <input @change="(e) => setImg(e)" accept="image/*" type="file" id="fileInput">
                         <label for="fileInput" class="file-label">
                             <div class="file-icon">+</div>
-                            <h3 class="file-text">Faylni tanlang</h3>
+                            <h3 class="file-text"> {{ $t('Gallary_span') }}</h3>
                         </label>
                     </div>
                     <div class="GallaryAdmin-wrapper-card" v-for="i in store.gallery" :key="i.id">

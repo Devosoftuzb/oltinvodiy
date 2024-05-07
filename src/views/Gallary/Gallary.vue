@@ -114,7 +114,14 @@ const getAllGallery = () => {
 onMounted(() => {
   getAllGallery();
 });
-
+const closeModal = ref(false)
+const closeMenu = () => {
+    (closeModal.value = !closeModal.value)
+    window.scrollTo(0, 0);
+}
+const ScTop = () => {
+    window.scrollTo(0, 0);
+}
 </script>
 <template>
   <section class="Gallary-hero">
@@ -179,7 +186,7 @@ onMounted(() => {
         {{ $t('Contact_title') }}
       </h1>
       <div class="contact-btn">
-        <router-link  to="/Contact" class="contact-btn-item">
+        <router-link @click="closeMenu" to="/Contact" class="contact-btn-item">
           {{ $t('Contact_btn') }}
         </router-link>
         <a class="contact-btn-tel" href="tel:+981100632">

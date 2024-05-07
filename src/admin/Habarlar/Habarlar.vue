@@ -65,6 +65,12 @@ const deleteContact = (id) => {
 onMounted(() => {
     getAllContact();
 });
+import { useChangeLanguage } from '@/stores/language';
+const { changeLanguage } = useChangeLanguage();
+const changeLanguages = (lang) => {
+    changeLanguage(lang);
+    location.reload()
+};
 </script>
 <template>
     <div class="HabarlarAdmin">
@@ -80,7 +86,7 @@ onMounted(() => {
                     </button>
                 </div>
                 <h1>
-                    Habarlar
+                    {{ $t('ContactPg_title') }}
                 </h1>
             </div>
             <div class="HabarlarAdmin-main">
@@ -90,17 +96,17 @@ onMounted(() => {
                             <tr>
                                 <td>
                                     <h3>
-                                        Ismi
+                                        {{ $t('Contact_name') }}
                                     </h3>
                                 </td>
                                 <td>
                                     <h3>
-                                        Ma `lumot
+                                        {{ $t('Menu_info_table') }}
                                     </h3>
                                 </td>
                                 <td>
                                     <h3>
-                                        Sozlamalar
+                                        {{ $t('Menu_change_table') }}
                                     </h3>
                                 </td>
                             </tr>
@@ -133,7 +139,7 @@ onMounted(() => {
             </div>
             <div class="HabarlarAdmin-footer">
                 <div class="HabarlarAdmin-footer-wrapper">
-                    <button>
+                    <button @click="store.pag == 0 ? store.pag = store.pagContactAll.length - 1  : store.pag -= 1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" d="M5 12h14M5 12l6 6m-6-6l6-6" />
@@ -141,16 +147,16 @@ onMounted(() => {
                     </button>
                     <div class="HabarlarAdmin-footer-content">
                         <span>
-                            1
+                            {{ store.pagContactAll.length == 0 ? store.pag : store.pag + 1 }}
                         </span>
                         <span>
                             /
                         </span>
                         <span>
-                            2
+                            {{ store.pagContactAll.length }}
                         </span>
                     </div>
-                    <button>
+                    <button @click="store.pag + 1 == store.pagContactAll.length ? store.pag = 0 : store.pag += 1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
                             <path fill="currentColor"
                                 d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018a.751.751 0 0 1-.018-1.042l2.97-2.97H3.75a.75.75 0 0 1 0-1.5h7.44L8.22 4.03a.75.75 0 0 1 0-1.06" />

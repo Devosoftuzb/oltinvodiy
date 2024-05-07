@@ -110,7 +110,13 @@ justify-content: center;}
     background-color: transparent;
     color: #CA9554;
 }
-
+.active {
+    /* Стили для активной кнопки */
+    background-color: #1A0A0A;
+  }
+.Menu-list-header button{
+    background-color: transparent;
+}
 @media(max-width:750px){
     .Menu-list-header span{
         font-size: 20px;
@@ -210,4 +216,9 @@ justify-content: center;}
    .swiper-button-prev{
     top: 200px !important;
    }
+}
+@media(max-width:430px){
+    .All-Menu h1{
+        font-size: 35px;
+    }
 }

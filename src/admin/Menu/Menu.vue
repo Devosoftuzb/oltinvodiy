@@ -264,7 +264,12 @@ onMounted(() => {
     getAllCategory();
     getAllMenu()
 })
-
+import { useChangeLanguage } from '@/stores/language';
+const { changeLanguage } = useChangeLanguage();
+const changeLanguages = (lang) => {
+    changeLanguage(lang);
+    location.reload()
+};
 </script>
 <template>
     <div class="MenuAdmin">
@@ -281,11 +286,25 @@ onMounted(() => {
             <div class="MenuAdmin-header">
                 <div class="MenuAdmin-header-wrapper">
                     <h1>
-                        
+                        {{ $t('Menu_title1') }}
                     </h1>
                     <button @click="oppenModal" class="MenuAdmin-header-btn">
-                        Qo'shish
+                        {{ $t('Menu_add_btn') }}
                     </button>
+                    <div class="addropdown">
+                        <button class="addropbtn">Language</button>
+                        <div class="addropdown-content">
+                            <button @click="changeLanguages('uz')">
+                                Uz
+                            </button>
+                            <button @click="changeLanguages('ru')">
+                                Ru
+                            </button>
+                            <button @click="changeLanguages('eng')">
+                                Eng
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="MenuAdmin-main">
@@ -304,27 +323,27 @@ onMounted(() => {
                             <tr>
                                 <td>
                                     <h3>
-                                        Rasm
+                                        {{ $t('Menu_foto_table') }}
                                     </h3>
                                 </td>
                                 <td>
                                     <h3>
-                                        Nom
+                                        {{ $t('Menu_title_table') }}
                                     </h3>
                                 </td>
                                 <td>
                                     <h3>
-                                        Ma `lumot
+                                        {{ $t('Menu_info_table') }}
                                     </h3>
                                 </td>
                                 <td>
                                     <h3>
-                                        Narx
+                                        {{ $t('Menu_price_table') }}
                                     </h3>
                                 </td>
                                 <td>
                                     <h3>
-                                        Sozlamalar
+                                        {{ $t('Menu_change_table') }}
                                     </h3>
                                 </td>
                             </tr>
@@ -420,7 +439,7 @@ onMounted(() => {
             <div class="create-modal">
                 <div class="create-modal-header">
                     <h1>
-                        Menu qo`shish
+                        {{ $t('Menu_add_btn_modal') }}
                     </h1>
                     <button @click="oppenModal">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14">
@@ -435,19 +454,19 @@ onMounted(() => {
                         <div class="form-grid form-name">
                             <label for="fioru">
                                 <h3>
-                                    Nom Russ
+                                    {{ $t('Menu_add_ru_name') }}
                                 </h3>
                                 <input v-model="menu.title_rus" required id="fioru" type="text">
                             </label>
                             <label for="fiouz">
                                 <h3>
-                                    Nom Uzb
+                                    {{ $t('Menu_add_uz_name') }}
                                 </h3>
                                 <input v-model="menu.title_uzb" required id="fiouz" type="text">
                             </label>
                             <label for="fioeng">
                                 <h3>
-                                    Nom Eng
+                                    {{ $t('Menu_add_eng_name') }}
                                 </h3>
                                 <input v-model="menu.title_eng" required id="fioeng" type="text">
                             </label>
@@ -455,17 +474,17 @@ onMounted(() => {
                         <div class="form-grid">
                             <label for="raqam">
                                 <h3>
-                                    Narx
+                                    {{ $t('Menu_price_table') }}
                                 </h3>
                                 <input v-model="menu.price" class="inp-number" required id="raqam" type="number">
                             </label>
                             <div class="modal-foto">
                                 <h3>
-                                    Rasm qoish
+                                    {{ $t('Menu_add_img') }}
                                 </h3>
                                 <label class="file-input-container" for="foto">
                                     <span>
-                                        Rasm tanglang
+                                        {{ $t('Menu_add_img2') }}
                                     </span>
                                     <input @change="(e) => setImg(e)" accept="image/*" type="file">
                                 </label>
@@ -474,21 +493,21 @@ onMounted(() => {
                         <div class="form-grid necessary">
                             <label for="textrus">
                                 <h3>
-                                    Malumot Russ
+                                    {{ $t('Menu_add_info_ru') }}
                                 </h3>
                                 <textarea v-model="menu.body_rus" class="menu-info" name="" id="textrus" cols=""
                                     rows=""></textarea>
                             </label>
                             <label for="textuzb">
                                 <h3>
-                                    Malumot Uzb
+                                    {{ $t('Menu_add_info_uz') }}
                                 </h3>
                                 <textarea v-model="menu.body_uzb" class="menu-info" name="" id="textuzb" cols=""
                                     rows=""></textarea>
                             </label>
                             <label for="texteng">
                                 <h3>
-                                    Malumot Eng
+                                    {{ $t('Menu_add_info_eng') }}
                                 </h3>
                                 <textarea v-model="menu.body_eng" class="menu-info" name="" id="texteng" cols=""
                                     rows=""></textarea>
@@ -501,7 +520,7 @@ onMounted(() => {
                                 </option>
                             </select>
                             <button class="submitBtn" type="submit">
-                                Menu qoshish
+                                {{ $t('Menu_add_btn_modal') }}
                             </button>
                         </div>
                     </form>
@@ -513,7 +532,7 @@ onMounted(() => {
             <div class="change-modal">
                 <div class="change-header">
                     <h1>
-                        Menu O`zgartirish
+                        {{ $t('Category_edit_btn') }}
                     </h1>
                     <button @click="openModalChange">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14">
@@ -528,19 +547,19 @@ onMounted(() => {
                         <div class="form-grid form-name">
                             <label for="fioru">
                                 <h3>
-                                    Nom Russ
+                                    {{ $t('Menu_add_ru_name') }}
                                 </h3>
                                 <input v-model="edit.title_rus" required id="fioru" type="text">
                             </label>
                             <label for="fiouz">
                                 <h3>
-                                    Nom Uzb
+                                    {{ $t('Menu_add_uz_name') }}
                                 </h3>
                                 <input v-model="edit.title_uzb" required id="fiouz" type="text">
                             </label>
                             <label for="fioeng">
                                 <h3>
-                                    Nom Eng
+                                    {{ $t('Menu_add_eng_name') }}
                                 </h3>
                                 <input v-model="edit.title_eng" required id="fioeng" type="text">
                             </label>
@@ -548,17 +567,17 @@ onMounted(() => {
                         <div class="form-grid">
                             <label for="raqam">
                                 <h3>
-                                    Narx
+                                    {{ $t('Menu_price_table') }}
                                 </h3>
                                 <input v-model="edit.price" class="inp-number" required id="raqam" type="number">
                             </label>
                             <div class="modal-foto">
                                 <h3>
-                                    Rasm qoish
+                                    {{ $t('Menu_add_img') }}
                                 </h3>
                                 <label class="file-input-container" for="foto">
                                     <span>
-                                        Rasm tanglang
+                                        {{ $t('Menu_add_img2') }}
                                     </span>
                                     <input @change="(e) => setImg(e)" accept="image/*" type="file">
                                 </label>
@@ -567,21 +586,21 @@ onMounted(() => {
                         <div class="form-grid necessary">
                             <label for="textrus">
                                 <h3>
-                                    Malumot Russ
+                                    {{ $t('Menu_add_info_ru') }}
                                 </h3>
                                 <textarea v-model="edit.body_rus" class="menu-info" name="" id="textrus" cols=""
                                     rows=""></textarea>
                             </label>
                             <label for="textuzb">
                                 <h3>
-                                    Malumot Uzb
+                                    {{ $t('Menu_add_info_uz') }}
                                 </h3>
                                 <textarea v-model="edit.body_uzb" class="menu-info" name="" id="textuzb" cols=""
                                     rows=""></textarea>
                             </label>
                             <label for="texteng">
                                 <h3>
-                                    Malumot Eng
+                                    {{ $t('Menu_add_info_eng') }}
                                 </h3>
                                 <textarea v-model="edit.body_eng" class="menu-info" name="" id="texteng" cols=""
                                     rows=""></textarea>
@@ -589,15 +608,12 @@ onMounted(() => {
                         </div>
                         <div class="modal-footer">
                             <select v-model="edit.category_id">
-                                <option selected value="Turkum tanlang ">
-                                    Turkum tanlang
-                                </option>
                                 <option v-for="i in store.categoryAll" :key="i.id">
                                     {{ i.name_uzb }}
                                 </option>
                             </select>
                             <button class="submitBtn" type="submit">
-                                Menu O`zgartirish
+                                {{ $t('Category_edit_btn') }}
                             </button>
                         </div>
                     </form>

@@ -17,7 +17,9 @@ export default {
         CONFIG
     },
     setup() {
+
         const swiper = useSwiper();
+        
         const onSwiper = (swiper) => {
             console.log(swiper);
         };
@@ -27,15 +29,12 @@ export default {
 
         const activeIndex = ref(null);
 
-        const changeBackground = (index) => {
-            activeIndex.value = index;
-        };
 
         const store = reactive({
             categoryAll: false,
             menuAll: false,
             menuCategory: [],
-            lang: false
+            lang: false,
         });
 
         const getAllCategory = () => {
@@ -52,6 +51,7 @@ export default {
         };
 
         const category = (id) => {
+            activeIndex.value = id;
             store.menuCategory = []
             for (let i in store.menuAll) {
                 if (store.menuAll[i].category_id == id) {
@@ -77,8 +77,20 @@ export default {
                     console.log(error);
                 });
         };
+        const getPdf = () => {
+    axios
+        .get("/pdf-menu/find-all", {
 
+        })
+        .then((res) => {
+            store.pdf = res.data
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
         onMounted(() => {
+            getPdf()
             category();
             getAllCategory();
             getAllMenu()
@@ -86,13 +98,13 @@ export default {
 
 
         return {
+            getPdf,
             CONFIG,
             category,
             getAllMenu,
             getAllCategory,
             store,
             activeIndex,
-            changeBackground,
             onSwiper,
             onSlideChange,
             swiper,
@@ -117,13 +129,12 @@ export default {
     <section class="Menu-list">
         <div class="container">
             <div class="Menu-list-header">
-                <button @click="category(i.id)" :class="{ active: activeIndex === null }" v-for="i in store.categoryAll"
-                    :key="i.id">
+                <button @click="category(i.id)" :class="{ active: activeIndex === i.id }" v-for="i in store.categoryAll" :key="i.id">
                     <span v-if="store.lang == 'uz'">{{ i.name_uzb }}</span>
                     <span v-else-if="store.lang == 'ru'">{{ i.name_rus }}</span>
                     <span v-else-if="store.lang == 'eng'">{{ i.name_eng }}</span>
                     <span v-else>{{ i.name_uzb }}</span>
-                </button>
+                  </button>
             </div>
             <div class="Menu-swiper">
                 <swiper class="swiper-preloader-spin" :modules="modules" :slides-per-view="1" :space-between="50"
@@ -176,7 +187,7 @@ export default {
                 {{ $t('Menu_title2') }}
             </h1>
             <div class="All-menu-wrapper">
-                <a href="!#" target="_blank" rel="noopener noreferrer">
+                <a v-for="i in store.pdf" :key="i.id" :href="i.pdf" download="" target="_blank" rel="noopener noreferrer">
                     {{ $t('Menu_btn2') }}
                 </a>
             </div>

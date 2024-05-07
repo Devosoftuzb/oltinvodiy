@@ -158,6 +158,12 @@ onMounted(() => {
     window.scroll(0, 0);
     getAllCategory();
 })
+import { useChangeLanguage } from '@/stores/language';
+const { changeLanguage } = useChangeLanguage();
+const changeLanguages = (lang) => {
+    changeLanguage(lang);
+    location.reload()
+};
 </script>
 <template>
     <div class="Category">
@@ -174,11 +180,25 @@ onMounted(() => {
             <div class="Category-header">
                 <div class="Category-header-wrapper">
                     <h1>
-                        Turkum
+                        {{ $t('Category_Name') }}
                     </h1>
                     <button @click="oppenCategory" class="Category-header-btn">
-                        Turkum Qo`shish
+                        {{ $t('Category_add_btn') }}
                     </button>
+                    <div class="addropdown">
+                        <button class="addropbtn">Language</button>
+                        <div class="addropdown-content">
+                            <button @click="changeLanguages('uz')">
+                                Uz
+                            </button>
+                            <button @click="changeLanguages('ru')">
+                                Ru
+                            </button>
+                            <button @click="changeLanguages('eng')">
+                                Eng
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="Category-main">
@@ -188,12 +208,12 @@ onMounted(() => {
                             <tr>
                                 <td>
                                     <h3>
-                                        Nom
+                                        {{ $t('Menu_title_table') }}
                                     </h3>
                                 </td>
                                 <td>
                                     <h3>
-                                        Sozlamalar
+                                        {{ $t('Menu_change_table') }}
                                     </h3>
                                 </td>
                             </tr>
@@ -267,7 +287,7 @@ onMounted(() => {
             <div class="change-modal">
                 <div class="change-header">
                     <h1>
-                        Turkum O`zgartirish
+                        {{ $t('Category_edit_btn') }}
                     </h1>
                     <button @click="openModalChange">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14">
@@ -282,25 +302,25 @@ onMounted(() => {
                         <div class="form-grid ">
                             <label for="turrus">
                                 <h3>
-                                    Nom Russ
+                                    {{ $t('Menu_add_ru_name') }}
                                 </h3>
                                 <input v-model="edit.name_rus" required id="turrus" type="text">
                             </label>
                             <label for="turuz">
                                 <h3>
-                                    Nom Uzb
+                                    {{ $t('Menu_add_uz_name') }}
                                 </h3>
                                 <input v-model="edit.name_uzb" required id="turuz" type="text">
                             </label>
                             <label for="tureng">
                                 <h3>
-                                    Nom Eng
+                                    {{ $t('Menu_add_eng_name') }}
                                 </h3>
                                 <input v-model="edit.name_eng" required id="tureng" type="text">
                             </label>
                         </div>
                         <button class="submitBtn" type="submit">
-                            Turkum o`zgartirish
+                            {{ $t('Category_edit_btn') }}
                         </button>
                     </form>
                 </div>
@@ -311,7 +331,7 @@ onMounted(() => {
                 <div class="Category-header">
                     <div class="Category-modal-header">
                         <h1>
-                            Turkum qo`shish
+                            {{ $t('Category_add_btn') }}
                         </h1>
                         <button @click="oppenCategory">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14">
@@ -325,25 +345,25 @@ onMounted(() => {
                         <div class="form-grid ">
                             <label for="turrus">
                                 <h3>
-                                    Nom Russ
+                                    {{ $t('Menu_add_ru_name') }}
                                 </h3>
                                 <input v-model="category.name_rus" required id="turrus" type="text">
                             </label>
                             <label for="turuz">
                                 <h3>
-                                    Nom Uzb
+                                    {{ $t('Menu_add_uz_name') }}
                                 </h3>
                                 <input v-model="category.name_uzb" required id="turuz" type="text">
                             </label>
                             <label for="tureng">
                                 <h3>
-                                    Nom Eng
+                                    {{ $t('Menu_add_eng_name') }}
                                 </h3>
                                 <input v-model="category.name_eng" required id="tureng" type="text">
                             </label>
                         </div>
                         <button class="submitBtn" type="submit">
-                            Turkum qoshish
+                            {{ $t('Category_add_btn') }}
                         </button>
                     </form>
                 </div>

@@ -35,10 +35,12 @@ const createContact = () => {
             console.log(res)
             contact.phone = "";
             contact.info = "";
+            location.reload()
         })
         .catch((error) => {
             console.log(error);
         });
+
 }
 </script>
 <template>
@@ -59,10 +61,10 @@ const createContact = () => {
                         {{ $t('Contact_comment') }}
                     </h2>
                     <label for="name">
-                        <input v-model="contact.phone" class="Con-name" type="text" id="name" placeholder="Ismingiz">
+                        <input v-model="contact.phone" class="Con-name" type="text" id="name" :placeholder="$t('Contact_name')">
                     </label>
                     <label for="info">
-                        <textarea v-model="contact.info" placeholder="Fikiringizdi yozing" name="" id="info" cols="30" rows="10"></textarea>
+                        <textarea v-model="contact.info" :placeholder="$t('Contact_comment')" name="" id="info" cols="30" rows="10"></textarea>
                     </label>
                     <button class="form-btn" type="submit">
                         {{ $t('Contact_submit') }}
