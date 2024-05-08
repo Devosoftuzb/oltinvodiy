@@ -35,6 +35,7 @@ export default {
             menuAll: false,
             menuCategory: [],
             lang: false,
+            pdf:false
         });
 
         const getAllCategory = () => {
@@ -187,7 +188,7 @@ export default {
                 {{ $t('Menu_title2') }}
             </h1>
             <div class="All-menu-wrapper">
-                <a v-for="i in store.pdf" :key="i.id" :href="i.pdf" download="" target="_blank" rel="noopener noreferrer">
+                <a v-for="i in store.pdf" :key="i.id" :href="CONFIG.API_URL + i.pdf" target="_blank" download >
                     {{ $t('Menu_btn2') }}
                 </a>
             </div>

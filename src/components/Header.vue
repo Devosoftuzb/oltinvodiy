@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="header-btn">
-                    <a href="tel:+981100632">
+                    <a href="tel:+998937029292">
                         <svg class="header-btn-icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                             viewBox="0 0 24 24">
                             <path fill="currentColor"

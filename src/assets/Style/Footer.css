@@ -42,7 +42,9 @@ footer{
 }
 .footer-logo img{
     width: 120px;
-    height: ;
+}
+.footer-card a {
+    color: #D8C3B2;
 }
 @media(max-width:750px){
     .footer-wrapper{

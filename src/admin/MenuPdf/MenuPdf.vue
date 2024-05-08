@@ -19,6 +19,7 @@ const store = reactive({
 const getImg = ref(null);
 const setImg = (e) => {
     getImg.value = e.target.files[0];
+    console.log(getImg.value);
     const data = {
         pdf: getImg.value,
     };
@@ -35,6 +36,7 @@ const setImg = (e) => {
             },
         })
         .then((res) => {
+            console.log("post");
             getPdf()
             location.reload()
         })
@@ -68,6 +70,7 @@ const getPdf = () => {
         .then((res) => {
             store.pdf = res.data
             store.id = store.pdf[0].id
+            console.log(store.pdf);
         })
         .catch((error) => {
             console.log(error);
