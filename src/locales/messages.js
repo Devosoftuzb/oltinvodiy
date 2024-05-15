@@ -10,7 +10,7 @@ export default {
       Home_gallary:'Galereya',
       Home_gallary_text:'Oltin Vodiy – zamonaviy loftning hashamatini aks ettiruvchi va xalqimizning boy uslubiga zid bo‘lgan yangi konsepsiya. Bu yerda xalqimizning go‘zalligi namoyish etilib, hayoliy muhitni yetkazib, jo‘shqinlik uyg‘otadigan o‘ziga xos qiyofa yaratilgan.',
       Home_gallary_text2:'Qizil va yashil kabi chuqur baxmal ranglarga ega oltin elementlar, shuningdek, tabiiy o`simliklar zamonaviy teginish bilan joyning qirolligini aks ettiradi. Issiq yoritgichli suzuvchi marmar stol bar maydonini qayta tiklaydi.',
-      Home_gallary_title:'Menyu',
+      Home_gallary_title:'Menuy',
       Home_gallary_text:'Oltin vodiy – eng mazali ikki taomni o‘zida mujassamlashtirgan gurme jahon taomlari bilan jihozlangan zamonaviy restoran. Biz yaratgan hashamatli va sirli muhitni zamonaviy qiyofasi va o`ziga xos teginishi bilan oziq-ovqat va ichimliklar menyusi to`ldiradi.',
       Home_gallary_text2:'Bu eng yuqori sifatli mazali taomlarni tatib ko`rish va zalda hunarmandchilik kokteyllari ichib, do`stlar bilan vaqt o`tkazish hashamatli tajriba.',
       Home_gallary_btn:'To`liq menuy',
