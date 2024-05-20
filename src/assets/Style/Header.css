@@ -1,6 +1,6 @@
 header{
     background-color: #130202;
-    padding: 25px 80px;
+    padding: 15px 80px;
     width: 100%;
     position:fixed;
     z-index: 33;
@@ -192,8 +192,8 @@ header{
     
 }
 .logo{
-    width: 130px;
-    height: 100px;
+    width: 100px;
+    height: 80px;
 }
 .header-logo-mobile{
     width: 100px !important;
