@@ -20,7 +20,7 @@ export default {
 
 
       Header_menu_item1:'Bosh sahifa',
-      Header_menu_item2:'Menuy',
+      Header_menu_item2:'Menu',
       Header_menu_item3:'Biz haqimizda',
       Header_menu_item4:'Gallary',
       Header_menu_item5:'Bog`lanish',
@@ -31,8 +31,8 @@ export default {
       Footer_media:'Ijtimoiy tarmoq:',
 
 
-      Menu_title1:'Menuy',
-      Menu_title2:'To`liq menyu',
+      Menu_title1:'Menu',
+      Menu_title2:'To`liq menu',
       Menu_btn2:'Korish',
 
       AboutUs_title:'Biz Haqimizda',

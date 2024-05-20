@@ -5,7 +5,7 @@ import { useSidebarStore } from '@/stores/saidbar.js';
 import { ref, reactive, onMounted } from 'vue';
 import axios from '@/services/axios'
 import CONFIG from '../../stores/config'
-
+import '@/assets/Style/Menu/Menu.css'
 
 
 
@@ -207,11 +207,13 @@ const getAllCategory = () => {
 const category = (id) => {
     store.pagMenuAll = []
     store.menuCategory = []
-    for (let i in store.menuAll) {
-        if (store.menuAll[i].category_id == id) {
-            store.menuCategory.push(store.menuAll[i])
-        }
-    }
+    activeIndex.value = id;
+            store.menuCategory = []
+            for (let i in store.menuAll) {
+                if (store.menuAll[i].category_id == id) {
+                    store.menuCategory.push(store.menuAll[i])
+                }
+            }
     let Menu = []
     if (store.menuCategory) {
         for (let i in store.menuCategory) {
@@ -308,14 +310,13 @@ const changeLanguages = (lang) => {
                 </div>
             </div>
             <div class="MenuAdmin-main">
-                <div class="MenuAdmin-nav">
-                    <button @click="category(i.id)" :class="{ active: activeIndex === null }"
-                        v-for="i in store.categoryAll" :key="i.id">
+                <div class="Menu-list-header">
+                    <button @click="category(i.id)" :class="{ active: activeIndex === i.id }" v-for="i in store.categoryAll" :key="i.id">
                         <span v-if="store.lang == 'uz'">{{ i.name_uzb }}</span>
                         <span v-else-if="store.lang == 'ru'">{{ i.name_rus }}</span>
                         <span v-else-if="store.lang == 'eng'">{{ i.name_eng }}</span>
                         <span v-else>{{ i.name_uzb }}</span>
-                    </button>
+                      </button>
                 </div>
                 <div class="MenuAdmin-table">
                     <table>
