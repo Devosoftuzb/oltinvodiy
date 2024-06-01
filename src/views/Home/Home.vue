@@ -417,7 +417,7 @@ const ScTop = () => {
           <router-link  @click="closeMenu" to="/Contact" class="contact-btn-item">
             {{ $t('Contact_btn') }}
           </router-link>
-          <a  class="contact-btn-tel" href="tel:+981100632">
+          <a  class="contact-btn-tel" href="tel:+937029292">
             {{ $t('Contact_btn2') }}
           </a>
         </div>
