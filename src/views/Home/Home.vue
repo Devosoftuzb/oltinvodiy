@@ -376,7 +376,7 @@ const ScTop = () => {
               </router-link>
             </div>
             <div class="Home-Gallary-foto">
-              <img src="https://frndsdubai.com/wp-content/uploads/2022/12/FRNDS-CAFE_Tape-Agency_026_07.11.2022-1-2048x1365.jpg" alt="foto">
+              <img src="../../img/homebg1.jpg" alt="foto">
             </div>
           </div>
         </div>
@@ -386,7 +386,7 @@ const ScTop = () => {
       <div class="container">
         <div class="Menu-wrapper">
           <div class="Menu-foto-left">
-            <img class="Menu-foto-left-img" src="https://frndsdubai.com/wp-content/uploads/2022/12/FRNDS-CAFE_Tape-Agency_022_07.11.2022-1-scaled.jpg" alt="foto">
+            <img class="Menu-foto-left-img" src="../../img/homefoto2.jpg" alt="foto">
           </div>
           <div class="Menu-content">
             <h2 class="Menu-content-title">
@@ -403,7 +403,7 @@ const ScTop = () => {
             </router-link>
           </div>
           <div class="Menu-foto-right">
-            <img class="menu-foto-right-img" src="https://frndsdubai.com/wp-content/uploads/2022/12/F.R.N.D.S.-Cafe_Tape-Agency_044_30.11.2022-1-768x1152.jpg" alt="foto">
+            <img class="menu-foto-right-img" src="../../img/homefoto3.jpg" alt="foto">
           </div>
         </div>
       </div>
