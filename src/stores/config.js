@@ -1,5 +1,5 @@
 const CONFIG = {
-    API_URL: 'https://oltinvodiy-backend.onrender.com/',
+    API_URL: 'http://45.138.158.253:3000/',
   };
   
   export default CONFIG;
