@@ -5,7 +5,8 @@ import { useSidebarStore } from '@/stores/saidbar.js';
 import { ref, reactive, onMounted } from 'vue';
 import axios from '@/services/axios'
 
-
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 const Category = ref(false)
 const oppenCategory = () => (Category.value = !Category.value)
 const openChange = ref(false)
@@ -52,10 +53,19 @@ const deleteCategory = (id) => {
         })
         .then((res) => {
             getAllCategory()
-            location.reload()
+            toast("Muvaffaqiyat!", {
+            "theme": "dark",
+            "type": "success",
+            "dangerouslyHTMLString": true
+            })
+
         })
         .catch((error) => {
-            console.log(error);
+            toast("Hato!", {
+            "theme": "dark",
+            "type": "error",
+            "dangerouslyHTMLString": true
+            })
         });
 }
 
@@ -77,10 +87,18 @@ const createCategory = () => {
             category.name_eng = "";
             Category.value = false
             getAllCategory()
-            location.reload()
+            toast("Muvaffaqiyat!", {
+            "theme": "dark",
+            "type": "success",
+            "dangerouslyHTMLString": true
+            })
         })
         .catch((error) => {
-            console.log(error);
+             toast("Hato!", {
+            "theme": "dark",
+            "type": "error",
+            "dangerouslyHTMLString": true
+            })
         });
 }
 
@@ -96,7 +114,6 @@ const getOneCategory = (id) => {
             edit.id = id
         })
         .catch((error) => {
-            console.log("error", error);
         });
 };
 
@@ -118,10 +135,18 @@ const editCategory = () => {
             edit.name_eng = ""
             openChange.value = false
             getAllCategory()
-            location.reload()
+            toast("Muvaffaqiyat!", {
+            "theme": "dark",
+            "type": "success",
+            "dangerouslyHTMLString": true
+            })
         })
         .catch((error) => {
-            console.log("error", error);
+            toast("Hato!", {
+            "theme": "dark",
+            "type": "error",
+            "dangerouslyHTMLString": true
+            })
         });
 }
 
@@ -150,7 +175,6 @@ const getAllCategory = () => {
             }
         })
         .catch((error) => {
-            console.log(error);
         });
 };
 
@@ -162,7 +186,6 @@ import { useChangeLanguage } from '@/stores/language';
 const { changeLanguage } = useChangeLanguage();
 const changeLanguages = (lang) => {
     changeLanguage(lang);
-    location.reload()
 };
 </script>
 <template>

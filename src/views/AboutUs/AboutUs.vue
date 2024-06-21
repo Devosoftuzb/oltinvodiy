@@ -293,7 +293,6 @@ onMounted(() => {
         scrollTrigger:{
           trigger:'.About-boss-foto-img',
           start:'top 90%',
-        //   markers:true,
           scrub:1.8
         }
       }
@@ -324,7 +323,6 @@ onMounted(() => {
         scrollTrigger:{
           trigger:'.contact-btn-item',
           end:'top 100%',
-        //   markers:true,
           scrub:5
         }
       }
@@ -340,7 +338,6 @@ onMounted(() => {
         scrollTrigger:{
           trigger:'.contact-btn-tel',
           end:'top 100%',
-          // markers:true,
           scrub:5
         }
       }

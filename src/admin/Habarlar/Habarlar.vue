@@ -4,6 +4,8 @@ import '@/assets/Style/Admin/Habarlar.css'
 import { onMounted, reactive } from "vue";
 import axios from "@/services/axios";
 import { useSidebarStore } from '@/stores/saidbar.js';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
 const sidebar = useSidebarStore();
 function burger() {
@@ -55,10 +57,18 @@ const deleteContact = (id) => {
         })
         .then((res) => {
             getAllContact()
-            location.reload()
+            toast("Muvaffaqiyat!", {
+            "theme": "dark",
+            "type": "success",
+            "dangerouslyHTMLString": true
+            })
         })
         .catch((error) => {
-            console.log(error);
+            toast("Hato!", {
+            "theme": "dark",
+            "type": "error",
+            "dangerouslyHTMLString": true
+            })
         });
 }
 

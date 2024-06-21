@@ -5,7 +5,8 @@ import { useSidebarStore } from '@/stores/saidbar.js';
 import axios from "@/services/axios";
 import { onMounted, reactive, ref } from "vue";
 import CONFIG from '../../stores/config'
-
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 const sidebar = useSidebarStore();
 function burger() {
     sidebar.sidebar = !sidebar.sidebar
@@ -35,10 +36,18 @@ const setImg = (e) => {
         })
         .then((res) => {
             getAllGallery()
-            location.reload()
+            toast("Muvaffaqiyat!", {
+            "theme": "dark",
+            "type": "success",
+            "dangerouslyHTMLString": true
+            })
         })
         .catch((error) => {
-            console.log(error);
+            toast("Hato!", {
+            "theme": "dark",
+            "type": "error",
+            "dangerouslyHTMLString": true
+            })
         })
 };
 
@@ -53,10 +62,19 @@ const deleteGallery = (id) => {
         })
     .then((res) => {
         getAllGallery()
-        location.reload()
+        // location.reload()
+        toast("Ochirildi!", {
+            "theme": "dark",
+            "type": "success",
+            "dangerouslyHTMLString": true
+            })
     })
         .catch((error) => {
-            console.log(error);
+            toast("Hato!", {
+            "theme": "dark",
+            "type": "error",
+            "dangerouslyHTMLString": true
+            })
         });
 }
 
@@ -69,7 +87,7 @@ const getAllGallery = () => {
             store.gallery = res.data
         })
         .catch((error) => {
-            console.log(error);
+
         });
 }
 onMounted(() => {

@@ -47,7 +47,6 @@ export default {
                     store.categoryAll = store.categoryAll.reverse()
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
         };
 
@@ -75,7 +74,6 @@ export default {
                     store.menuCategory = store.menuAll
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
         };
         const getPdf = () => {
@@ -87,7 +85,6 @@ export default {
             store.pdf = res.data
         })
         .catch((error) => {
-            console.log(error);
         });
 }
         onMounted(() => {

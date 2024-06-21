@@ -32,13 +32,11 @@ const createContact = () => {
         .post("/contact/create", data, {
         })
         .then((res) => {
-            console.log(res)
             contact.phone = "";
             contact.info = "";
             location.reload()
         })
         .catch((error) => {
-            console.log(error);
         });
 
 }

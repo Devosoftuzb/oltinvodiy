@@ -3,6 +3,9 @@ import '@/assets/Style/Login.css'
 import { reactive } from "vue";
 import axios from "@/services/axios";
 import router from "@/router";
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
+
 
 const login = reactive({
   email: "",
@@ -18,14 +21,17 @@ const loginAdmin = () => {
     .post("/admins/login", data, {
     })
     .then((res) => {
-      console.log(res.data.tokens.refresh_token)
       login.email = "";
       login.password = "";
       localStorage.setItem('token' , res.data.tokens.refresh_token)
       router.push('/admin')
     })
     .catch((error) => {
-      console.log(error);
+      toast("Hato", {
+      "theme": "dark",
+      "type": "error",
+      "dangerouslyHTMLString": true
+})
     });
 };
 </script>

@@ -6,7 +6,8 @@ import { ref, reactive, onMounted } from 'vue';
 import axios from '@/services/axios'
 import CONFIG from '../../stores/config'
 import '@/assets/Style/Menu/Menu.css'
-
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
 
 const Category = ref(false)
@@ -31,7 +32,6 @@ const changeBackground = (index) => {
 const getImg = ref(null);
 const setImg = (e) => {
     getImg.value = e.target.files[0];
-    console.log(getImg.value);
 };
 
 const store = reactive({
@@ -73,10 +73,18 @@ const deleteMenu = (id) => {
         })
         .then((res) => {
             getAllMenu()
-            location.reload()
+            toast("Muvaffaqiyat!", {
+            "theme": "dark",
+            "type": "success",
+            "dangerouslyHTMLString": true
+            })
         })
         .catch((error) => {
-            console.log(error);
+            toast("Hato!", {
+            "theme": "dark",
+            "type": "error",
+            "dangerouslyHTMLString": true
+            })
         });
 }
 
@@ -98,7 +106,7 @@ const getOneMenu = (id) => {
             openChange.value = true;
         })
         .catch((error) => {
-            console.log("error", error);
+
         });
 };
 
@@ -141,10 +149,18 @@ const editmenu = () => {
             edit.price = ""
             openChange.value = false
             getAllMenu()
-            location.reload()
+            toast("Muvaffaqiyat!", {
+            "theme": "dark",
+            "type": "success",
+            "dangerouslyHTMLString": true
+            })
         })
         .catch((error) => {
-            console.log("error", error);
+            toast("Hato!", {
+            "theme": "dark",
+            "type": "error",
+            "dangerouslyHTMLString": true
+            })
         });
 };
 
@@ -183,10 +199,19 @@ const createMenu = () => {
             menu.price = String("");
             modal.value = false
             getAllMenu()
-            location.reload()
+            getAllMenu()
+            toast("Muvaffaqiyat!", {
+            "theme": "dark",
+            "type": "success",
+            "dangerouslyHTMLString": true
+            })
         })
         .catch((error) => {
-            console.log(error);
+            toast("Hato!", {
+            "theme": "dark",
+            "type": "error",
+            "dangerouslyHTMLString": true
+            })
         });
 }
 
@@ -200,7 +225,6 @@ const getAllCategory = () => {
             let cat = []
         })
         .catch((error) => {
-            console.log(error);
         });
 };
 
@@ -256,7 +280,6 @@ const getAllMenu = () => {
             }
         })
         .catch((error) => {
-            console.log(error);
         });
 };
 
@@ -270,7 +293,6 @@ import { useChangeLanguage } from '@/stores/language';
 const { changeLanguage } = useChangeLanguage();
 const changeLanguages = (lang) => {
     changeLanguage(lang);
-    location.reload()
 };
 </script>
 <template>

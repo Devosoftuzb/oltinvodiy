@@ -30,7 +30,6 @@ const getMenu = () =>{
             NumberOfElements.menu = res.data.length
         })
         .catch((error)=>{
-            console.log(error);
         })
 }
 
@@ -42,7 +41,6 @@ const getGallery = () =>{
             NumberOfElements.gallery = res.data.length
         })
         .catch((error)=>{
-            console.log(error);
         })
 }
 
@@ -57,7 +55,7 @@ const getContact = () =>{
             NumberOfElements.contact = res.data.length
         })
         .catch((error)=>{
-            console.log(error);
+        
         })
 }
 const getAllCategory = () => {
@@ -68,7 +66,6 @@ const getAllCategory = () => {
             NumberOfElements.category = res.data.length
         })
         .catch((error) => {
-            console.log(error);
         });
 };
 const getPdf = () => {
@@ -80,7 +77,6 @@ const getPdf = () => {
             NumberOfElements.menupdf = res.data.length
         })
         .catch((error) => {
-            console.log(error);
         });
 }
 onMounted(() => {

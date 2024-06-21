@@ -107,7 +107,6 @@ const getAllGallery = () => {
       img.img_8 = store.listGallery[7].image
     })
     .catch((error) => {
-      console.log(error);
     });
 }
 

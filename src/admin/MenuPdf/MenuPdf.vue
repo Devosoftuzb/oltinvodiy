@@ -4,7 +4,8 @@ import '@/assets/Style/Admin/Pdf.css'
 import { useSidebarStore } from '@/stores/saidbar.js';
 import axios from "@/services/axios";
 import { onMounted, reactive, ref } from "vue";
-
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 const sidebar = useSidebarStore();
 function burger() {
     sidebar.sidebar = !sidebar.sidebar
@@ -38,10 +39,18 @@ const setImg = (e) => {
         .then((res) => {
             console.log("post");
             getPdf()
-            location.reload()
+            toast("Muvaffaqiyat!", {
+            "theme": "dark",
+            "type": "success",
+            "dangerouslyHTMLString": true
+            })
         })
         .catch((error) => {
-            console.log(error);
+            toast("Hato!", {
+            "theme": "dark",
+            "type": "error",
+            "dangerouslyHTMLString": true
+            })
         })
 };
 
@@ -55,10 +64,18 @@ const deletePdf = (id) => {
         })
         .then((res) => {
             getPdf()
-            location.reload()
+            toast("Muvaffaqiyat!", {
+            "theme": "dark",
+            "type": "success",
+            "dangerouslyHTMLString": true
+            })
         })
         .catch((error) => {
-            console.log(error);
+            toast("Hato!", {
+            "theme": "dark",
+            "type": "error",
+            "dangerouslyHTMLString": true
+            })
         });
 }
 
@@ -73,7 +90,6 @@ const getPdf = () => {
             console.log(store.pdf);
         })
         .catch((error) => {
-            console.log(error);
         });
 }
 onMounted(() => {

@@ -13,9 +13,10 @@
     justify-content: center;
 }
 .Saidbar-menu{
-    display: flex;
+    padding: 10px;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 .Saidbar-menu-item{
     font-family: "Roboto", sans-serif;
