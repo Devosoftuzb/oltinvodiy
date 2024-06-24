@@ -62,6 +62,7 @@ const edit = reactive({
     body_rus: "",
     body_eng: "",
     price: "",
+    category_id: 0,
 });
 
 const deleteMenu = (id) => {
@@ -74,16 +75,17 @@ const deleteMenu = (id) => {
         .then((res) => {
             getAllMenu()
             toast("Muvaffaqiyat!", {
-            "theme": "dark",
-            "type": "success",
-            "dangerouslyHTMLString": true
+                "theme": "dark",
+                "type": "success",
+                "dangerouslyHTMLString": true
             })
         })
         .catch((error) => {
+            getAllMenu()
             toast("Hato!", {
-            "theme": "dark",
-            "type": "error",
-            "dangerouslyHTMLString": true
+                "theme": "dark",
+                "type": "error",
+                "dangerouslyHTMLString": true
             })
         });
 }
@@ -116,6 +118,8 @@ const editmenu = () => {
             menu.category_id = store.categoryAll[i].id
         }
     }
+    console.log(getImg.value);
+    console.log(edit.category_id);
     const data = {
         image: getImg.value,
         title_uzb: edit.title_uzb,
@@ -150,16 +154,16 @@ const editmenu = () => {
             openChange.value = false
             getAllMenu()
             toast("Muvaffaqiyat!", {
-            "theme": "dark",
-            "type": "success",
-            "dangerouslyHTMLString": true
+                "theme": "dark",
+                "type": "success",
+                "dangerouslyHTMLString": true
             })
         })
         .catch((error) => {
             toast("Hato!", {
-            "theme": "dark",
-            "type": "error",
-            "dangerouslyHTMLString": true
+                "theme": "dark",
+                "type": "error",
+                "dangerouslyHTMLString": true
             })
         });
 };
@@ -199,18 +203,17 @@ const createMenu = () => {
             menu.price = String("");
             modal.value = false
             getAllMenu()
-            getAllMenu()
             toast("Muvaffaqiyat!", {
-            "theme": "dark",
-            "type": "success",
-            "dangerouslyHTMLString": true
+                "theme": "dark",
+                "type": "success",
+                "dangerouslyHTMLString": true
             })
         })
         .catch((error) => {
             toast("Hato!", {
-            "theme": "dark",
-            "type": "error",
-            "dangerouslyHTMLString": true
+                "theme": "dark",
+                "type": "error",
+                "dangerouslyHTMLString": true
             })
         });
 }
@@ -232,12 +235,12 @@ const category = (id) => {
     store.pagMenuAll = []
     store.menuCategory = []
     activeIndex.value = id;
-            store.menuCategory = []
-            for (let i in store.menuAll) {
-                if (store.menuAll[i].category_id == id) {
-                    store.menuCategory.push(store.menuAll[i])
-                }
-            }
+    store.menuCategory = []
+    for (let i in store.menuAll) {
+        if (store.menuAll[i].category_id == id) {
+            store.menuCategory.push(store.menuAll[i])
+        }
+    }
     let Menu = []
     if (store.menuCategory) {
         for (let i in store.menuCategory) {
@@ -333,12 +336,13 @@ const changeLanguages = (lang) => {
             </div>
             <div class="MenuAdmin-main">
                 <div class="Menu-list-header">
-                    <button @click="category(i.id)" :class="{ active: activeIndex === i.id }" v-for="i in store.categoryAll" :key="i.id">
+                    <button @click="category(i.id)" :class="{ active: activeIndex === i.id }"
+                        v-for="i in store.categoryAll" :key="i.id">
                         <span v-if="store.lang == 'uz'">{{ i.name_uzb }}</span>
                         <span v-else-if="store.lang == 'ru'">{{ i.name_rus }}</span>
                         <span v-else-if="store.lang == 'eng'">{{ i.name_eng }}</span>
                         <span v-else>{{ i.name_uzb }}</span>
-                      </button>
+                    </button>
                 </div>
                 <div class="MenuAdmin-table">
                     <table>
@@ -631,7 +635,7 @@ const changeLanguages = (lang) => {
                         </div>
                         <div class="modal-footer">
                             <select v-model="edit.category_id">
-                                <option v-for="i in store.categoryAll" :key="i.id">
+                                <option :value="i.id" v-for="i in store.categoryAll" :key="i.id">
                                     {{ i.name_uzb }}
                                 </option>
                             </select>

@@ -54,17 +54,17 @@ const deleteCategory = (id) => {
         .then((res) => {
             getAllCategory()
             toast("Muvaffaqiyat!", {
-            "theme": "dark",
-            "type": "success",
-            "dangerouslyHTMLString": true
+                "theme": "dark",
+                "type": "success",
+                "dangerouslyHTMLString": true
             })
 
         })
         .catch((error) => {
             toast("Hato!", {
-            "theme": "dark",
-            "type": "error",
-            "dangerouslyHTMLString": true
+                "theme": "dark",
+                "type": "error",
+                "dangerouslyHTMLString": true
             })
         });
 }
@@ -88,16 +88,16 @@ const createCategory = () => {
             Category.value = false
             getAllCategory()
             toast("Muvaffaqiyat!", {
-            "theme": "dark",
-            "type": "success",
-            "dangerouslyHTMLString": true
+                "theme": "dark",
+                "type": "success",
+                "dangerouslyHTMLString": true
             })
         })
         .catch((error) => {
-             toast("Hato!", {
-            "theme": "dark",
-            "type": "error",
-            "dangerouslyHTMLString": true
+            toast("Hato!", {
+                "theme": "dark",
+                "type": "error",
+                "dangerouslyHTMLString": true
             })
         });
 }
@@ -136,16 +136,16 @@ const editCategory = () => {
             openChange.value = false
             getAllCategory()
             toast("Muvaffaqiyat!", {
-            "theme": "dark",
-            "type": "success",
-            "dangerouslyHTMLString": true
+                "theme": "dark",
+                "type": "success",
+                "dangerouslyHTMLString": true
             })
         })
         .catch((error) => {
             toast("Hato!", {
-            "theme": "dark",
-            "type": "error",
-            "dangerouslyHTMLString": true
+                "theme": "dark",
+                "type": "error",
+                "dangerouslyHTMLString": true
             })
         });
 }
