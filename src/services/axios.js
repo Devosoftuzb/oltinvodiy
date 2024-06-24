@@ -1,4 +1,4 @@
 import axios from 'axios' 
-axios.defaults.baseURL = 'http://45.138.158.253:3000/api'
+axios.defaults.baseURL = 'https://bac.oltin-vodiy-restaurant.uz/api'
 
 export default axios

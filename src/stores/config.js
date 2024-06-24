@@ -1,5 +1,5 @@
 const CONFIG = {
-    API_URL: 'http://45.138.158.253:3000/',
+    API_URL: 'https://bac.oltin-vodiy-restaurant.uz/api/',
   };
   
   export default CONFIG;
