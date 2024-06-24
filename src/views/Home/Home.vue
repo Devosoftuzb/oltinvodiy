@@ -325,7 +325,7 @@ const ScTop = () => {
             Oltin Vodiy
           </h1>
             <div ref="hero__btn"> 
-              <router-link  to="/Menu" class="hero-menu-btn" >
+              <router-link  to="/menu" class="hero-menu-btn" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 20.25c0 .414.336.75.75.75h10.652C17.565 21 18 20.635 18 19.4v-1.445M5 20.25A2.25 2.25 0 0 1 7.25 18h10.152c.226 0 .425-.014.598-.045M5 20.25V6.2c0-1.136-.072-2.389 1.092-2.982C6.52 3 7.08 3 8.2 3h9.2c1.236 0 1.6.437 1.6 1.6v11.8c0 .995-.282 1.425-1 1.555"/></svg>
               </router-link>
             </div>
@@ -347,7 +347,7 @@ const ScTop = () => {
             <p class="aboutUs-content-p2">
               {{ $t('Home_aboutUs_text2') }}
             </p>
-            <router-link  to="/AboutUs" class="AboutUs-btn">
+            <router-link  to="/aboutus" class="AboutUs-btn">
               {{ $t('Home_btn') }}
             </router-link>
           </div>
@@ -371,7 +371,7 @@ const ScTop = () => {
                 {{ $t('Home_gallary_text2') }}
               </p>
 
-              <router-link  to="/Gallary" class="Gallary-btn">
+              <router-link  to="/gallary" class="Gallary-btn">
                 {{ $t('Home_btn') }}
               </router-link>
             </div>
@@ -398,7 +398,7 @@ const ScTop = () => {
             <p class="menu-text2">
               {{ $t('Home_gallary_text2') }}
             </p>
-            <router-link  to="/Menu" class="Menu-btn">
+            <router-link  to="/menu" class="Menu-btn">
               {{ $t('Home_gallary_btn') }}
             </router-link>
           </div>
@@ -414,7 +414,7 @@ const ScTop = () => {
           {{ $t('Contact_title') }}
         </h1>
         <div class="contact-btn">
-          <router-link  @click="closeMenu" to="/Contact" class="contact-btn-item">
+          <router-link  @click="closeMenu" to="/contact" class="contact-btn-item">
             {{ $t('Contact_btn') }}
           </router-link>
           <a  class="contact-btn-tel" href="tel:+937029292">

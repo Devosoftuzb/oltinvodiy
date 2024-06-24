@@ -13,22 +13,22 @@
                         {{ $t('Header_menu_item1') }}
                     </h3>
                 </router-link>
-                <router-link @click="ScTop" to="/Menu" class="header-menu-item">
+                <router-link @click="ScTop" to="/menu" class="header-menu-item">
                     <h3>
                         {{ $t('Header_menu_item2') }}
                     </h3>
                 </router-link>
-                <router-link @click="ScTop" to="/AboutUs" class="header-menu-item">
+                <router-link @click="ScTop" to="/aboutus" class="header-menu-item">
                     <h3>
                         {{ $t('Header_menu_item3') }}
                     </h3>
                 </router-link>
-                <router-link @click="ScTop" to="/Gallary" class="header-menu-item">
+                <router-link @click="ScTop" to="/gallary" class="header-menu-item">
                     <h3>
                         {{ $t('Header_menu_item4') }} 
                     </h3>
                 </router-link>
-                <router-link @click="ScTop" to="/Contact" class="header-menu-item">
+                <router-link @click="ScTop" to="/contact" class="header-menu-item">
                     <h3>
                         {{ $t('Header_menu_item5') }} 
                     </h3>
@@ -77,22 +77,22 @@
                             {{ $t('Header_menu_item1') }}
                         </h3>
                     </router-link>
-                    <router-link @click="closeMenu" to="/Menu" class="header-menu-item">
+                    <router-link @click="closeMenu" to="/menu" class="header-menu-item">
                         <h3>
                             {{ $t('Header_menu_item2') }}
                         </h3>
                     </router-link>
-                    <router-link @click="closeMenu" to="/AboutUs" class="header-menu-item">
+                    <router-link @click="closeMenu" to="/aboutus" class="header-menu-item">
                         <h3>
                             {{ $t('Header_menu_item3') }}
                         </h3>
                     </router-link>
-                    <router-link @click="closeMenu" to="/Gallary" class="header-menu-item">
+                    <router-link @click="closeMenu" to="/gallary" class="header-menu-item">
                         <h3>
                             {{ $t('Header_menu_item4') }} 
                         </h3>
                     </router-link>
-                    <router-link @click="closeMenu" to="/Contact" class="header-menu-item">
+                    <router-link @click="closeMenu" to="/contact" class="header-menu-item">
                         <h3>
                             {{ $t('Header_menu_item5') }} 
                         </h3>

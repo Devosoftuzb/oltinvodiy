@@ -28,7 +28,7 @@ const router = createRouter({
           }
         },
         {
-          path: "/Menu",
+          path: "/menu",
           name: 'menu',
           component: () => import("@/views/Menu/Menu.vue"),
           meta: {
@@ -46,7 +46,7 @@ const router = createRouter({
           }
         },
         {
-          path: "/AboutUs",
+          path: "/aboutus",
           name: 'aboutus',
           component: () => import("@/views/AboutUs/AboutUs.vue"),
           meta: {
@@ -64,7 +64,7 @@ const router = createRouter({
           }
         },
         {
-          path: "/Gallary",
+          path: "/gallary",
           name: 'gallary',
           component: () => import("@/views/Gallary/Gallary.vue"),
           meta: {
@@ -82,7 +82,7 @@ const router = createRouter({
           }
         },
         {
-          path: "/Contact",
+          path: "/contact",
           name: 'contact',
           component: () => import("@/views/Contact/Contact.vue"),
           meta: {

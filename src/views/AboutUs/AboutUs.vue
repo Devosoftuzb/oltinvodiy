@@ -443,7 +443,7 @@ const ScTop = () => {
           {{ $t('Contact_title') }}
         </h1>
         <div class="contact-btn">
-          <router-link @click="closeMenu"  to="/Contact" class="contact-btn-item">
+          <router-link @click="closeMenu"  to="/contact" class="contact-btn-item">
             {{ $t('Contact_btn') }}
           </router-link>
           <a class="contact-btn-tel" href="tel:+981100632">
