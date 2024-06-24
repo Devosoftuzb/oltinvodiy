@@ -40,6 +40,14 @@ import '@/assets/Style/Footer.css'
                        </div>
                 </div>
             </div>
+            <div class="devosoft">
+                <h2>
+                    Made in 
+                </h2>
+                <a href="https://www.instagram.com/devosoft.uz/" target="_blank" rel="noopener noreferrer">
+                    <img src="../../public/DEVOSOFT 2-01-01(1).png" alt="">
+                </a>
+            </div>
         </div>
     </footer>
 </template>

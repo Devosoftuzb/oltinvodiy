@@ -14,7 +14,7 @@ const router = createRouter({
           name: 'home',
           component: () => import("@/views/Home/Home.vue"),
           meta: {
-            title: 'Home Page - Oltin Vodiy Restaurant',
+            title: 'Oltin Vodiy Restaurant',
             metaTags: [
               {
                 name: 'description',
