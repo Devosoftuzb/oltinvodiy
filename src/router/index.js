@@ -146,6 +146,21 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   let token = localStorage.getItem("token");
 
+
+  if (
+    (to.name == "admin" ||
+      to.name == "gallaryAdmin" ||
+      to.name == "menuAdmin" ||
+      to.name == "category" ||
+      to.name == "menupdf" ||
+      to.name == "habarlarAdmin") &&
+    to.name !== "login" &&
+    !token
+  ) {
+    return next({ name: "login" });
+  }
+
+
   const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
   const nearestWithMeta = to.matched.slice().reverse().find(r => r.meta && r.meta.metaTags);
 
@@ -153,34 +168,20 @@ router.beforeEach((to, from, next) => {
 
   Array.from(document.querySelectorAll('[data-vue-router-controlled]')).map(el => el.parentNode.removeChild(el));
 
-  if (!nearestWithMeta) return next();
+  if (nearestWithMeta) {
+    nearestWithMeta.meta.metaTags.map(tagDef => {
+      const tag = document.createElement('meta');
 
-  nearestWithMeta.meta.metaTags.map(tagDef => {
-    const tag = document.createElement('meta');
+      Object.keys(tagDef).forEach(key => {
+        tag.setAttribute(key, tagDef[key]);
+      });
 
-    Object.keys(tagDef).forEach(key => {
-      tag.setAttribute(key, tagDef[key]);
-    });
+      tag.setAttribute('data-vue-router-controlled', '');
 
-    tag.setAttribute('data-vue-router-controlled', '');
-
-    return tag;
-  })
-    .forEach(tag => document.head.appendChild(tag));
-
-    if (
-      (to.name == "admin" ||
-        to.name == "gallaryAdmin" ||
-        to.name == "menuAdmin" ||
-        to.name == "category" ||
-        to.name == "menupdf" ||
-        to.name == "habarlarAdmin") &&
-      to.name !== "login" &&
-      !token
-    ) {
-      next({ name: "login" });
-    } else {
-      next();
-    }
+      return tag;
+    }).forEach(tag => document.head.appendChild(tag));
+  }
+  next();
 });
+
 export default router
