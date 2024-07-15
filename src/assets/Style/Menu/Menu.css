@@ -142,7 +142,7 @@ justify-content: center;}
 @media(max-width:1215px){
     .Menu-swiper-card img{
         width: 450px;
-        height: 250px;
+        height: 450px;
     }
     .Menu-swiper-card h2{
         font-size: 30px;
@@ -179,13 +179,13 @@ justify-content: center;}
 @media(max-width:500px){
    .Menu-swiper-card img{
     width: 400px;
-    height: 250px;
+    height: 400px;
    }
 }
 @media(max-width:450px){
    .Menu-swiper-card img{
     width: 350px;
-    height: 200px;
+    height: 350px;
    }
    .swiper-button-next{
     top: 240px !important;
@@ -197,7 +197,7 @@ justify-content: center;}
 @media(max-width:385px){
    .Menu-swiper-card img{
     width: 300px;
-    height: 150px;
+    height: 300px;
    }
    .swiper-button-next{
     top: 200px !important;
@@ -209,7 +209,7 @@ justify-content: center;}
 @media(max-width:335px){
    .Menu-swiper-card img{
     width: 250px;
-    height: 150px;
+    height: 250px;
    }
    .swiper-button-next{
     top: 200px !important;
