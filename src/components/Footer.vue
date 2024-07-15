@@ -44,8 +44,9 @@ import '@/assets/Style/Footer.css'
                 <h2>
                     Made in 
                 </h2>
-                <a href="https://www.instagram.com/devosoft.uz/" target="_blank" rel="noopener noreferrer">
-                    <img src="../../public/DEVOSOFT 2-01-01(1).png" alt="">
+                <a class='footer__logo2' href="https://www.instagram.com/devosoft.uz/" target="_blank" rel="noopener noreferrer">
+                    <img  src="../../public/DEVOSOFT 2-01-012.png" alt="">
+                    <img class='devImg'  src="../../public/DEVOSOFT 2-01-01(1).png2.png" alt="">
                 </a>
             </div>
         </div>

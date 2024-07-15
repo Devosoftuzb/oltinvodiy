@@ -53,9 +53,25 @@ footer{
     justify-content: center;
     gap: 10px;
     margin-top: 50px;
+    position: relative;
 }
 .devosoft img{
-    width: 150px;
+    width: 50px;
+    height: 50px;
+}
+.devImg{
+    width: 140px !important;
+    visibility: hidden;
+    position: absolute;
+    bottom: 100%; /* Выровнять содержимое снизу */
+    transform: translateY(100%);
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.footer__logo2:hover .devImg{
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(100%);
 }
 .devosoft h2{
     color: white;
